@@ -201,10 +201,150 @@ typedef __PACKED_STRUCT {
 #define CH57x_UART_MCR_HALF_Pos       7
 #define CH57x_UART_MCR_HALF_Msk       (1UL << CH57x_UART_MCR_HALF_Pos)
 
-/* CH57x_UART IER Register Definitions */
-#define CH57x_UART_IER_RDY_Pos      0
-#define CH57x_UART_IER_RDY_Msk      (1UL) /* << CH57x_UART_IER_RDY_Pos */
+/* CH57x_UART IER Register Definition */
+#define CH57x_UART_IER_RECV_RDY_Pos  0
+#define CH57x_UART_IER_RECV_RDY_Msk  (1UL) /* << CH57x_UART_IER_RECV_RDY_Pos */
 
+#define CH57x_UART_IER_THR_EMPTY_Pos 1
+#define CH57x_UART_IER_THR_EMPTY_Msk (1UL << CH57x_UART_IER_THR_EMPTY_Pos)
+
+#define CH57x_UART_IER_LINE_STAT_Pos 2
+#define CH57x_UART_IER_LINE_STAT_Msk (1UL << CH57x_UART_IER_LINE_STAT_Pos)
+
+#define CH57x_UART_IER_MODEM_CHG_Pos 3
+#define CH57x_UART_IER_MODEM_CHG_Msk (1UL << CH57x_UART_IER_MODEM_CHG_Pos)
+
+#define CH57x_UART_IER_DTR_EN_Pos    4
+#define CH57x_UART_IER_DTR_EN_Msk    (1UL << CH57x_UART_IER_DTR_EN_Pos)
+
+#define CH57x_UART_IER_RTS_EN_Pos    5
+#define CH57x_UART_IER_RTS_EN_Msk    (1UL << CH57x_UART_IER_RTS_EN_Pos)
+
+#define CH57x_UART_IER_TXD_EN_Pos    6
+#define CH57x_UART_IER_TXD_EN_Msk    (1UL << CH57x_UART_IER_TXD_EN_Pos)
+
+#define CH57x_UART_IER_RESET_Pos     7
+#define CH57x_UART_IER_RESET_Msk     (1UL << CH57x_UART_IER_RESET_Pos)
+
+/* CH57x_UART FCR Register Definition */
+#define CH57x_UART_FCR_FIFO_EN_Pos     0
+#define CH57x_UART_FCR_FIFO_EN_Msk     (1UL) /* << CH57x_UART_FCR_FIFO_EN_Pos */
+
+#define CH57x_UART_FCR_RX_FIFO_CLR_Pos 1
+#define CH57x_UART_FCR_RX_FIFO_CLR_Msk (1UL << CH57x_UART_FCR_RX_FIFO_CLR_Pos)
+
+#define CH57x_UART_FCR_TX_FIFO_CLR_Pos 2
+#define CH57x_UART_FCR_TX_FIFO_CLR_Msk (1UL << CH57x_UART_FCR_TX_FIFO_CLR_Pos)
+
+#define CH57x_UART_FCR_FIFO_TRIG_Pos   6
+#define CH57x_UART_FCR_FIFO_TRIG_Msk   (0x3UL << CH57x_UART_FCR_FIFO_TRIG_Pos)
+
+/* CH57x_UART LCR Register Definition */
+#define CH57x_UART_LCR_WORD_SZ_Pos  0
+#define CH57x_UART_LCR_WORD_SZ_Msk  (0x3UL) /* << CH57x_UART_LCR_WORD_SZ_Pos */
+
+#define CH57x_UART_LCR_STOP_BIT_Pos 2
+#define CH57x_UART_LCR_STOP_BIT_Msk (1UL << CH57x_UART_LCR_STOP_BIT_Pos)
+
+#define CH57x_UART_LCR_PAR_EN_Pos   3
+#define CH57x_UART_LCR_PAR_EN_Msk   (1UL << CH57x_UART_LCR_PAR_EN_Pos)
+
+#define CH57x_UART_LCR_PAR_MOD_Pos  4
+#define CH57x_UART_LCR_PAR_MOD_Msk  (0x3UL << CH57x_UART_LCR_PAR_MOD_Pos)
+
+#define CH57x_UART_LCR_BREAK_EN_Pos 6
+#define CH57x_UART_LCR_BREAK_EN_Msk (1UL << CH57x_UART_LCR_BREAK_EN_Pos)
+
+#define CH57x_UART_LCR_GP_BIT_Pos   7
+#define CH57x_UART_LCR_GP_BIT_Msk   (1UL << CH57x_UART_LCR_GP_BIT_Pos)
+
+/* CH57x_UART IIR Register Definition */
+#define CH57x_UART_IIR_NO_INT_Pos   0
+#define CH57x_UART_IIR_NO_INT_Msk   (1UL) /* << CH57x_UART_IIR_NO_INT_Pos */
+
+#define CH57x_UART_IIR_INT_MASK_Pos 1
+#define CH57x_UART_IIR_INT_MASK_Msk (0x4UL << CH57x_UART_IIR_INT_MASK_Pos)
+
+#define CH57x_UART_IIR_FIFO_ID_Pos  6
+#define CH57x_UART_IIR_FIFO_ID_Msk  (0x2UL << CH57x_UART_IIR_FIFO_ID_Pos)
+
+/* CH57x_UART LSR Register Definition */
+#define CH57x_UART_LSR_DATA_RDY_Pos    0
+#define CH57x_UART_LSR_DATA_RDY_Msk    (1UL) /* << CH57x_UART_LSR_DATA_RDY_Pos */
+
+#define CH57x_UART_LSR_OVER_ERR_Pos    1
+#define CH57x_UART_LSR_OVER_ERR_Msk    (1UL << CH57x_UART_LSR_OVER_ERR_Pos)
+
+#define CH57x_UART_LSR_PAR_ERR_Pos     2
+#define CH57x_UART_LSR_PAR_ERR_Msk     (1UL << CH57x_UART_LSR_PAR_ERR_Pos)
+
+#define CH57x_UART_LSR_FRAME_ERR_Pos   3
+#define CH57x_UART_LSR_FRAME_ERR_Msk   (1UL << CH57x_UART_LSR_FRAME_ERR_Pos)
+
+#define CH57x_UART_LSR_BREAK_ERR_Pos   4
+#define CH57x_UART_LSR_BREAK_ERR_Msk   (1UL << CH57x_UART_LSR_BREAK_ERR_Pos)
+
+#define CH57x_UART_LSR_TX_FIFO_EMP_Pos 5
+#define CH57x_UART_LSR_TX_FIFO_EMP_Msk (1UL << CH57x_UART_LSR_TX_FIFO_EMP_Pos)
+
+#define CH57x_UART_LSR_TX_ALL_EMP_Pos  6
+#define CH57x_UART_LSR_TX_ALL_EMP_Msk  (1UL << CH57x_UART_LSR_TX_ALL_EMP_Pos)
+
+#define CH57x_UART_LSR_RX_FIFO_ERR_Pos 7
+#define CH57x_UART_LSR_RX_FIFO_ERR_Msk (1UL << CH57x_UART_LSR_RX_FIFO_ERR_Pos)
+
+/* CH57x_UART MSR Register Definition */
+#define CH57x_UART_MSR_CTS_CHG_Pos 0
+#define CH57x_UART_MSR_CTS_CHG_Msk (1UL) /* << CH57x_UART_MSR_CTS_CHG_Pos */
+
+#define CH57x_UART_MSR_DSR_CHG_Pos 1
+#define CH57x_UART_MSR_DSR_CHG_Msk (1UL << CH57x_UART_MSR_DSR_CHG_Pos)
+
+#define CH57x_UART_MSR_RI_CHG_Pos  2
+#define CH57x_UART_MSR_RI_CHG_Msk  (1UL << CH57x_UART_MSR_RI_CHG_Pos)
+
+#define CH57x_UART_MSR_DCD_CHG_Pos 3
+#define CH57x_UART_MSR_DCD_CHG_Msk (1UL << CH57x_UART_MSR_DCD_CHG_Pos)
+
+#define CH57x_UART_MSR_CTS_Pos     4
+#define CH57x_UART_MSR_CTS_Msk     (1UL << CH57x_UART_MSR_CTS_Pos)
+
+#define CH57x_UART_MSR_DSR_Pos     5
+#define CH57x_UART_MSR_DSR_Msk     (1UL << CH57x_UART_MSR_DSR_Pos)
+
+#define CH57x_UART_MSR_RI_Pos      6
+#define CH57x_UART_MSR_RI_Msk      (1UL << CH57x_UART_MSR_RI_Pos)
+
+#define CH57x_UART_MSR_DCD_Pos     7
+#define CH57x_UART_MSR_DCD_Msk     (1UL << CH57x_UART_MSR_DCD_Pos)
+
+/* CH57x_UART RBR Register Definition */
+#define CH57x_UART_RBR_Pos 0
+#define CH57x_UART_RBR_Msk (0xFFUL) /* << CH57x_UART_RBR_DATA_Pos */
+
+/* CH57x_UART THR Register Definition */
+#define CH57x_UART_THR_Pos 0
+#define CH57x_UART_THR_Msk (0xFFUL) /* << CH57x_UART_THR_Pos */
+
+/* CH57x_UART RFC Register Definition */
+#define CH57x_UART_RFC_Pos 0
+#define CH57x_UART_RFC_Msk (0xFFUL) /* << CH57x_UART_RFC__Pos */
+
+/* CH57x_UART TFC Register Definition */
+#define CH57x_UART_TFC_Pos 0
+#define CH57x_UART_TFC_Msk (0xFFUL) /* << CH57x_UART_TFC__Pos */
+
+/* CH57x_UART DL Register Definition */
+#define CH57x_UART_DL_Pos 0
+#define CH57x_UART_DL_Msk (0xFFFFUL) /* << CH57x_UART_DL_Pos */
+
+/* CH57x_UART DIV Register Definition */
+#define CH57x_UART_DIV_Pos 0
+#define CH57x_UART_DIV_Msk (0xFFUL) /* << CH57x_UART_DIV_Pos */
+
+/* CH57x_UART ADR Register Definition */
+#define CH57x_UART_ADR_Pos 0
+#define CH57x_UART_ADR_Msk (0xFFUL) /* << CH57x_UART_ADR_Pos */
 
 /* ================  End of section using anonymous unions  ================ */
 #if defined(__CC_ARM)
