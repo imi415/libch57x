@@ -1,0 +1,41 @@
+
+name: "Build on native architecture"
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  build:
+    runs-on: "ubuntu-latest"
+    steps:
+    - name: "Update package cache"
+      run: "sudo apt-get update"
+
+    - name: "Setup dependencies"
+      run: "sudo apt-get -y install build-essential cmake gcc-arm-none-eabi"
+      env:
+        DEBIAN_FRONTEND: "noninteractive"
+
+    - name: "Checkout repository"
+      uses: "actions/checkout@v2"
+      with:
+        submodules: "true"
+
+    - name: "Create build directory"
+      run: "mkdir build"
+
+    - name: "Configure cmake"
+      run: "cmake -DCMAKE_TOOLCHAIN_FILE=cmake/arm-none-eabi.cmake -DLIBCH57X_DEVICE=CH579 .."
+      working-directory: "build"
+
+    - name: "Build project"
+      run: "make"
+      working-directory: "build"
+
+    - name: "Store native binary"
+      uses: "actions/upload-artifact@v2"
+      with:
+        name: "libch57x.a"
+        path: "build/libch57x.a"
+        retention-days: 30
+

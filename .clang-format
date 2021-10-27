@@ -1,0 +1,12 @@
+BasedOnStyle: Google
+IndentWidth: 4
+IndentPPDirectives: BeforeHash
+AlignConsecutiveMacros: AcrossEmptyLines
+AlignConsecutiveDeclarations: true
+AlignConsecutiveAssignments: AcrossEmptyLinesAndComments
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterEnum: false
+  AfterStruct: false
+  SplitEmptyFunction: false
+ColumnLimit: 120
