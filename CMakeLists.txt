@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(libch57x)
+project(ch57x)
 
 if(NOT DEFINED LIBCH57X_DEVICE)
     message(FATAL_ERROR "Error: LIBCH57X_DEVICE not defined.")
