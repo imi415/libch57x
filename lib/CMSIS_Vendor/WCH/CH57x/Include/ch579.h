@@ -91,70 +91,84 @@ typedef enum IRQn {
 /* ============       Device Specific Peripheral Section        ============ */
 /* ========================================================================= */
 
-/* ================               ADC                       ================ */
+/* ================                SYS/AUX                  ================ */
 typedef __PACKED_STRUCT {
-    __IOM uint8_t CHANNEL;   /* Offset: 0x000 (R/W ) Channel Select Register */
-    __IOM uint8_t CONFIG;    /* Offset: 0x001 (R/W ) Config Register */
-    __IOM uint8_t CONVERT;   /* Offset: 0x002 (R/W ) Conversion Control Register */
-    __IOM uint8_t TEMCONFIG; /* Offset: 0x003 (R/W ) Temperature Sensor Control Register */
-    __IM uint16_t DATA;      /* Offset: 0x004 (R/  ) Data Register */
-    __IOM uint8_t INTFLAG;   /* Offset: 0x006 (R/WC) Interrupt Flag Register */
+    uint32_t       UNUSED0[2];      /* 0x000 - 0x007 */
+    __IOM uint16_t CLK_SYS_CFG;     /* Offset: 0x008 (R/W ) System Clock Configuration Register */
+    __IOM uint8_t  HFCK_PWR_CTRL;   /* Offset: 0x00A (R/W ) HF Clock Power Control Register */
+    uint8_t        UNUSED1;         /* 0x00B */
+    __IOM uint16_t SLP_CLK_OFF;     /* Offset: 0x00C (R/W ) Sleep Mode Clock Control Register */
+    __IOM uint8_t  SLP_WAKE_CTRL;   /* Offset: 0x00E (R/W ) Sleep Mode Wakeup Event Control Register */
+    __IOM uint8_t  SLP_POWER_CTRL;  /* Offset: 0x00F (R/W ) Sleep Mode Power Control Register */
+    uint32_t       UNUSED2[2];      /* 0x010 - 0x017 */
+    __IOM uint16_t PIN_ALTERNATE;   /* Offset: 0x018 (R/W ) Pin Alternative Function Control Register */
+    __IOM uint16_t PIN_ANALOG_IE;   /* Offset: 0x01A (R/W ) Pin Analog Input Configuration Register */
+    __IOM uint8_t  SLV_CONFIG;      /* Offset: 0x01C (R/W ) Passive Parallel Port Configuration Register */
+    uint8_t        UNUSED3[3];      /* 0x1D - 0x1F */
+    __IOM uint16_t POWER_PLAN;      /* Offset: 0x020 (R/W ) Sleep Mode Power Management Register */
+    __IOM uint8_t  AUX_POWER_ADJ;   /* Offset: 0x022 (R/W ) AUX Power Adjustment Register */
+    uint8_t        UNUSED4;         /* 0x23 */
+    __IOM uint8_t  BAT_DET_CTRL;    /* Offset: 0x024 (R/W ) Battery Detector Control Register */
+    __IOM uint8_t  BAT_DET_CFG;     /* Offset: 0x025 (R/W ) Battery Detector Configuration Register */
+    __IM uint8_t   BAT_STATUS;      /* Offset: 0x026 (R/  ) Battery Status Register */
+    uint8_t        UNUSED5[5];      /* 0x027 - 0x02B */
+    __IOM uint16_t INT32K_TUNE;     /* Offset: 0x02C (R/W ) Internal 32kHz Clock Tune Register */
+    __IOM uint8_t  XT32K_TUNE;      /* Offset: 0x02E (R/W ) External 32kHz Crystal Tune Register */
+    __IOM uint8_t  CK32K_CONFIG;    /* Offset: 0x02F (R/W ) 32kHz Clock Source Configuration Register */
+    __IOM uint8_t  RTC_FLAG_CTRL;   /* Offset: 0x030 (R/W ) RTC Flag and Control Register */
+    __IOM uint8_t  RTC_MODE_CTRL;   /* Offset: 0x031 (R/W ) RTC Mode Control Register */
+    uint16_t       UNUSED6;         /* 0x032 - 0x033 */
+    __IOM uint32_t RTC_TRIG;        /* Offset: 0x034 (R/W ) RTC Trigger Register */
+    __IOM uint32_t RTC_CNT;         /* Offset: 0x038 (R/  ) RTC Counter Register */
+    __IOM uint32_t RTC_CNT_DAY;     /* Offset: 0x03C (R/  ) RTC Day Count Register */
+    __IOM uint8_t  SAFE_ACCESS_SIG; /* Offset: 0x040 (R/W ) Safe Access Sign Register */
+    __IM uint8_t   CHIP_ID;         /* Offset: 0x041 (R/  ) Chip ID Register */
+    __IM uint8_t   SAFE_ACCESS_ID;  /* Offset: 0x042 (R/  ) Safe Access ID Register */
+    __IM uint8_t   WDOG_COUNT;      /* Offset: 0x043 (R/  ) Watchdog Counter */
+    __IOM uint8_t  RESET_STATUS;    /* Offset: 0x044 (R/W ) Reset Status Register */
+    __IM uint8_t   GLOB_CFG_INFO;   /* Offset: 0x045 (R/W ) Global Config Info Register */
+    __IOM uint8_t  WDOG_CTRL;       /* Offset: 0x046 (R/W  ) Watchdog Control Register */
+    __IOM uint8_t  GLOB_RESET_KEEP; /* Offset: 0x047 (R/W ) Global Reset Keep Register */
+    uint16_t       UNUSED7;         /* 0x048 - 0x049 */
+    __IOM uint8_t  CFG_FLASH;       /* Offset: 0x04A (R/W ) Flash Configuration Register */
+    __IOM uint8_t  PLL_CONFIG;      /* Offset: 0x04B (R/W ) PLL Config Register */
+    __IOM uint8_t  INT32M_CALIB;    /* Offset: 0x04C (R/W ) Internal 32MHz Clock Calibration Register */
+    uint8_t        UNUSED8;         /* 0x04D */
+    __IOM uint8_t  INT32M_TUNE;     /* Offset: 0x04E (R/W ) Internal 32MHz Clock Tune Register */
+    uint8_t        UNUSED9;         /* 0x04F */
+    __IM uint16_t  OSC_CAL_CNT;     /* Offset: 0x050 (R/W ) Internal 32kHz Clock Calibration Value Register */
+    __IOM uint8_t  OSC_CAL_CTRL;    /* Offset: 0x052 (R/W ) Internal 32kHz Clock Calibration Control Register */
+    uint8_t        UNUSED10[5];     /* 0x053 - 0x057 */
+    __IOM uint8_t  ADC_CHANNEL;     /* Offset: 0x058 (R/W ) ADC Channel Selection Register */
+    __IOM uint8_t  ADC_CFG;         /* Offset: 0x059 (R/W ) ADC Configuration Register */
+    __IOM uint8_t  ADC_CONVERT;     /* Offset: 0x05A (R/W ) ADC Conversion Control Register */
+    __IOM uint8_t  TEM_SENSOR;      /* Offset: 0x05B (R/W ) ADC Temperature Sensor Configuration Register */
+    __IOM uint16_t ADC_DATA;        /* Offset: 0x05C (R/W ) ADC Conversion Result Register */
+    __IOM uint8_t  ADC_INT_FLAG;    /* Offset: 0x05E (R/WC) ADC Interrupt Flag Register */
+    __IOM uint8_t  TKEY_CNT;        /* Offset: 0x05F (R/W ) Touch Key Charge Control Register */
+    uint32_t       UNUSED11[12];    /* 0x60 - 0x8F */
+    __IOM uint16_t PA_INT_EN;       /* Offset: 0x090 (R/W ) Port A Interrupt Enable Register */
+    __IOM uint16_t PB_INT_EN;       /* Offset: 0x092 (R/W ) Port B Interrupt Enable Register */
+    __IOM uint16_t PA_INT_MODE;     /* Offset: 0x094 (R/W ) Port A Interrupt Mode Register */
+    __IOM uint16_t PB_INT_MODE;     /* Offset: 0x096 (R/W ) Port B Interrupt Mode Register */
+    uint16_t       UNUSED12[2];     /* 0x098 - 0x09B */
+    __IOM uint16_t PA_INT_FLAG;     /* Offset: 0x09C (R/W1C) Port A Interrupt Flag Register */
+    __IOM uint16_t PB_INT_FLAG;     /* Offset: 0x09E (R/W1C) Port B Interrupt Flag Register */
+    __IOM uint32_t PA_DIR;          /* Offset: 0x0A0 (R/W ) Port A Direction Register */
+    __IM uint32_t  PA_PIN;          /* Offset: 0x0A4 (R/W ) Port A Input Data Register */
+    __IOM uint32_t PA_OUT;          /* Offset: 0x0A8 (R/W ) Port A Output Data Register */
+    __IOM uint32_t PA_CLR;          /* Offset: 0x0AC (R/W ) Port A Clear Register */
+    __IOM uint32_t PA_PU;           /* Offset: 0x0B0 (R/W ) Port A Pull-up Configuration Register */
+    __IOM uint32_t PA_PD_DRV;       /* Offset: 0x0B4 (R/W ) Port A Pull-down/Drive Configuration Register */
+    uint32_t       UNUSED13[2];     /* 0x0B8 - 0x0BF */
+    __IOM uint32_t PB_DIR;          /* Offset: 0x0C0 (R/W ) Port A Direction Register */
+    __IM uint32_t  PB_PIN;          /* Offset: 0x0C4 (R/W ) Port A Input Data Register */
+    __IOM uint32_t PB_OUT;          /* Offset: 0x0C8 (R/W ) Port A Output Data Register */
+    __IOM uint32_t PB_CLR;          /* Offset: 0x0CC (R/W ) Port A Clear Register */
+    __IOM uint32_t PB_PU;           /* Offset: 0x0D0 (R/W ) Port A Pull-up Configuration Register */
+    __IOM uint32_t PB_PD_DRV;       /* Offset: 0x0D4 (R/W ) Port A Pull-down/Drive Configuration Register */
     // clang-format off
-} CH57x_ADC_TypeDef;           // clang-format on
-
-/* CH57x_ADC CHANNEL Register Definitions */
-#define CH57x_ADC_CHANNEL_INX_Pos 0
-#define CH57x_ADC_CHANNEL_INX_Msk (0xFUL) /*<< CH57x_ADC_CHANNEL_INX_Pos */
-
-/* CH57x_ADC CONFIG Register Definitions */
-#define CH57x_ADC_CONFIG_POWER_ON_Pos 0
-#define CH57x_ADC_CONFIG_POWER_ON_Msk (1UL << CH57x_ADC_CONFIG_POWER_ON_Pos)
-
-#define CH57x_ADC_CONFIG_BUF_EN_Pos   1
-#define CH57x_ADC_CONFIG_BUF_EN_Msk   (1UL << CH57x_ADC_CONFIG_BUF_EN_Pos)
-
-#define CH57x_ADC_CONFIG_DIFF_EN_Pos  2
-#define CH57x_ADC_CONFIG_DIFF_EN_Msk  (1UL << CH57x_ADC_CONFIG_DIFF_EN_Pos)
-
-#define CH57x_ADC_CONFIG_OFS_TEST_Pos 3
-#define CH57x_ADC_CONFIG_OFS_TEST_Msk (1UL << CH57x_ADC_CONFIG_OFS_TEST_Pos)
-
-#define CH57x_ADC_CONFIG_PGA_GAIN_Pos 4
-#define CH57x_ADC_CONFIG_PGA_GAIN_Msk (3UL << CH57x_ADC_CONFIG_PGA_GAIN_Pos)
-
-#define CH57x_ADC_CONFIG_CLK_DIV_Pos  6
-#define CH57x_ADC_CONFIG_CLK_DIV_Msk  (3UL << CH57x_ADC_CONFIG_CLK_DIV_Pos)
-
-/* CH57x_ADC_CONVERT Register Definitions */
-#define CH57x_ADC_CONVERT_START_Pos         0
-#define CH57x_ADC_CONVERT_START_Msk         (1UL) /* << CH57x_ADC_CONVERT_START_Pos */
-
-#define CH57x_ADC_CONVERT_TKEY_POWER_ON_Pos 3
-#define CH57x_ADC_CONVERT_TKEY_POWER_ON_Msk (1UL << CH57x_ADC_CONVERT_TKEY_POWER_ON_Pos)
-
-#define CH57x_ADC_CONVERT_TKEY_ACTION_Pos   4
-#define CH57x_ADC_CONVERT_TKEY_ACTION_Msk   (1UL << CH57x_ADC_CONVERT_TKEY_ACTION_Pos)
-
-#define CH57x_ADC_CONVERT_TKEY_CHG_ACT_Pos  5
-#define CH57x_ADC_CONVERT_TKEY_CHG_ACT_Msk  (1UL << CH57x_ADC_CONVERT_TKEY_CHG_ACT_Pos)
-
-#define CH57x_ADC_CONVERT_EOC_X_Pos         7
-#define CH57x_ADC_CONVERT_EOC_X_Msk         (1UL << CH57x_ADC_CONVERT_EOC_X_Pos)
-
-/* CH57x_ADC TEMCONFIG Register Definition */
-#define CH57x_ADC_TEMCONFIG_CALIB_Pos  0
-#define CH57x_ADC_TEMCONFIG_CALIB_Msk  (7UL) /* << CH57x_TEMCONFIG_CALIB_Pos */
-
-#define CH57x_ADC_TEMCONFIG_PWR_ON_Pos 7
-#define CH57x_ADC_TEMCONFIG_PWR_ON_Msk (1UL << CH57x_ADC_TEMCONFIG_PWR_ON_Pos)
-
-/* CH57x_ADC DATA Register Definition */
-#define CH57x_ADC_DATA_Pos 0
-#define CH57x_ADC_DATA_Msk (0xFFFUL) /* << CH57x_ADC_DATA_Pos */
-
-/* CH57x_ADC INTFLAG Register Difinition */
-#define CH57x_ADC_INTFLAG_EOC_Pos 7
-#define CH57x_ADC_INTFLAG_EOC_Msk (1UL << CH57x_ADC_INTFLAG_EOC_Pos)
+} CH57x_SYSAUX_TypeDef;  // clang-format on
 
 // UART
 typedef __PACKED_STRUCT {
@@ -375,12 +389,12 @@ typedef __PACKED_STRUCT {
 #define CH57x_PERIPH_BASE (0x40000000U)
 
 /* Peripheral memory map */
-#define CH57x_ADC_BASE   (CH57x_PERIPH_BASE + 0x1058) /* ADC Base Address */
-#define CH57x_UART0_BASE (CH57x_PERIPH_BASE + 0x3000) /* UART0 Base Address */
-#define CH57x_UART1_BASE (CH57x_PERIPH_BASE + 0x3400) /* UART1 Base Address */
-#define CH57x_UART2_BASE (CH57x_PERIPH_BASE + 0x3800) /* UART2 Base Address */
-#define CH57x_UART3_BASE (CH57x_PERIPH_BASE + 0x3C00) /* UART3 Base Address */
-                                                      /* ToDo: Add more peripherals */
+#define CH57x_SYSAUX_BASE (CH57x_PERIPH_BASE + 0x1000) /* SYS/AUX Base Address */
+#define CH57x_UART0_BASE  (CH57x_PERIPH_BASE + 0x3000) /* UART0 Base Address */
+#define CH57x_UART1_BASE  (CH57x_PERIPH_BASE + 0x3400) /* UART1 Base Address */
+#define CH57x_UART2_BASE  (CH57x_PERIPH_BASE + 0x3800) /* UART2 Base Address */
+#define CH57x_UART3_BASE  (CH57x_PERIPH_BASE + 0x3C00) /* UART3 Base Address */
+                                                       /* ToDo: Add more peripherals */
 
 #ifdef __cplusplus
 }
