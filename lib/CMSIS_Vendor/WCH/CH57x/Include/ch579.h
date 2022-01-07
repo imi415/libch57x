@@ -32,7 +32,7 @@ typedef enum IRQn {
     /* ================        CH579 Interrupt Numbers       ================ */
     TMR0_IRQn           = 0,
     GPIO_IRQn           = 1,
-    EMSlave_IRQn        = 2,
+    EMSLV_IRQn          = 2,
     SPI0_IRQn           = 3,
     BLE_LLE_IRQn        = 4,
     BLE_BB_IRQn         = 5,
@@ -395,6 +395,16 @@ typedef __PACKED_STRUCT {
 #define CH57x_UART2_BASE  (CH57x_PERIPH_BASE + 0x3800) /* UART2 Base Address */
 #define CH57x_UART3_BASE  (CH57x_PERIPH_BASE + 0x3C00) /* UART3 Base Address */
                                                        /* ToDo: Add more peripherals */
+
+/* ========================================================================= */
+/* ============             Peripheral declaration              ============ */
+/* ========================================================================= */
+
+
+/* ToDo: Add here your device peripherals pointer definitions
+         following is an example for timer */
+
+#define CH57x_SYSAUX        ((CH57x_SYSAUX_TypeDef *) CH57x_SYSAUX_BASE)
 
 #ifdef __cplusplus
 }
