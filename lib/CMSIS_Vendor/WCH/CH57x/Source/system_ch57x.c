@@ -1,26 +1,12 @@
-/**************************************************************************//**
- * @file     system_ch57x.c
- * @brief    CMSIS Device System Source File for
- *           CH57X Device
- * @version  V1.0.0
- * @date     09. July 2018
- ******************************************************************************/
-/*
- * Copyright (c) 2009-2018 Arm Limited. All rights reserved.
+/**
+ * @file system_ch57x.c
+ * @author imi415 (imi415.public@gmail.com)
+ * @brief CMSIS CH57x System Header File
+ * @version 0.1
+ * @date 2022-01-07
  *
- * SPDX-License-Identifier: Apache-2.0
+ * @copyright Copyright (c) 2022 imi415
  *
- * Licensed under the Apache License, Version 2.0 (the License); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an AS IS BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 
 #include "ch57x.h"
@@ -28,29 +14,71 @@
 /*----------------------------------------------------------------------------
   Define clocks
  *----------------------------------------------------------------------------*/
-#define  XTAL            (320000000UL)     /* Oscillator frequency */
-
-#define  SYSTEM_CLOCK    (XTAL)
-
+#define CK32K (32768UL)
+#define CK32M (32000000UL)  /* HS frequency */
+#define CKPLL (480000000UL) /* PLL */
 
 /*----------------------------------------------------------------------------
   System Core Clock Variable
  *----------------------------------------------------------------------------*/
-uint32_t SystemCoreClock = SYSTEM_CLOCK;  /* System Core Clock Frequency */
-
+uint32_t SystemCoreClock; /* System Core Clock Frequency */
 
 /*----------------------------------------------------------------------------
   System Core Clock update function
  *----------------------------------------------------------------------------*/
-void SystemCoreClockUpdate (void)
-{
-  SystemCoreClock = SYSTEM_CLOCK;
+void SystemCoreClockUpdate(void) {
+    // Check system clock status and update SystemCoreClock.
+    uint32_t hclk_src;
+    uint16_t clk_sys_cfg = SYS->R16_CLK_SYS_CFG;
+    uint8_t  clk_sys_mod =
+        (clk_sys_cfg & SYS_R16_CLK_SYS_CFG_RB_CLK_SYS_MOD_Msk) >> SYS_R16_CLK_SYS_CFG_RB_CLK_SYS_MOD_Pos;
+    uint8_t clk_pll_div =
+        (clk_sys_cfg & SYS_R16_CLK_SYS_CFG_RB_CLK_PLL_DIV_Msk) >> SYS_R16_CLK_SYS_CFG_RB_CLK_PLL_DIV_Pos;
+
+    /* 0: CK32M divide by PLL divider
+     * 1: CKPLL divide by PLL divider
+     * 2: CK32M as HCLK
+     * 3: CK32K as HCLK
+     */
+    switch (clk_sys_mod) {
+        case 0:
+        case 2:
+            hclk_src = CK32M;
+            break;
+        case 1:
+            hclk_src = CKPLL;
+            break;
+        case 3:
+            hclk_src = CK32K;
+            break;
+        default:
+            hclk_src = CK32M;
+            break;
+    }
+
+    /* Calculate divide factor
+     * 0: divided by 32
+     * 1: OFF (INVALID)
+     * 2-31: factor
+     */
+    if (clk_sys_mod == 0 || clk_sys_mod == 1) {
+        switch (clk_pll_div) {
+            case 0:
+                SystemCoreClock = hclk_src / 32;
+                break;
+            case 1:
+                SystemCoreClock = 0;
+                break;
+            default:
+                SystemCoreClock = hclk_src / clk_pll_div;
+                break;
+        }
+    }
 }
 
 /*----------------------------------------------------------------------------
   System initialization function
  *----------------------------------------------------------------------------*/
-void SystemInit (void)
-{
-  SystemCoreClock = SYSTEM_CLOCK;
+void SystemInit(void) {
+    // Init system
 }

@@ -8,6 +8,7 @@ endif()
 
 set(LIBCH57X_SOURCES
     "lib/CMSIS_Vendor/WCH/CH57x/Source/system_ch57x.c"
+    "src/libch57x_sys_gpio.c"
 )
 
 set(LIBCH57X_INCLUDES
