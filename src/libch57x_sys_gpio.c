@@ -30,6 +30,7 @@ libch57x_ret_t libch57x_gpio_config(libch57x_gpio_config_t *config) {
             break;
         case LIBCH57X_GPIO_MODE_OUTPUT_5MA:
             reg_dir |= pin_mask;
+            break;
         case LIBCH57X_GPIO_MODE_OUTPUT_20MA:
             reg_dir |= pin_mask;
             reg_pd_drv |= pin_mask;
