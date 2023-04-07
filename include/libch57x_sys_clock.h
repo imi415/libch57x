@@ -1,0 +1,6 @@
+#ifndef LIBCH57X_SYS_CLOCK_H
+#define LIBCH57X_SYS_CLOCK_H
+
+
+
+#endif // LIBCH57X_SYS_CLOCK_H

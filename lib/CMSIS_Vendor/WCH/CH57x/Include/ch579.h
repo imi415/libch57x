@@ -288,262 +288,70 @@ typedef struct {                                /*!< (@ 0x40001800) FLASH Struct
 
 
 /* =========================================================================================================================== */
-/* ================                                           TMR0                                            ================ */
+/* ================                                           TMR                                             ================ */
 /* =========================================================================================================================== */
 
 
 /**
-  * @brief Timer0 register (TMR0)
+  * @brief Timer register (TMR)
   */
 
-typedef struct {                                /*!< (@ 0x40002000) TMR0 Structure                                             */
-  __IOM uint8_t   R8_TMR0_CTRL_MOD;             /*!< (@ 0x00000000) RW, TMR0 mode control                                      */
-  __IM  uint8_t   RESERVED;
-  __IOM uint8_t   R8_TMR0_INTER_EN;             /*!< (@ 0x00000002) RW, TMR0 interrupt enable                                  */
-  __IM  uint8_t   RESERVED1;
-  __IM  uint16_t  RESERVED2;
-  __IOM uint8_t   R8_TMR0_INT_FLAG;             /*!< (@ 0x00000006) RW1, TMR0 interrupt flag                                   */
-  __IM  uint8_t   R8_TMR0_FIFO_COUNT;           /*!< (@ 0x00000007) RO, TMR0 FIFO count status                                 */
-  __IM  uint32_t  R32_TMR0_COUNT;               /*!< (@ 0x00000008) RO, TMR0 current count                                     */
-  __IOM uint32_t  R32_TMR0_CNT_END;             /*!< (@ 0x0000000C) RW, TMR0 end count value, only low 26 bit                  */
-  
-  union {
-    __IM  uint32_t R32_TMR0_FIFO_RO;            /*!< (@ 0x00000010) RO, TMR0 FIFO register, only low 26 bit                    */
-    __OM  uint32_t R32_TMR0_FIFO_WO;            /*!< (@ 0x00000010) WO, TMR0 FIFO register, only low 26 bit                    */
-  };
-} TMR0_Type;                                    /*!< Size = 20 (0x14)                                                          */
-
-
-
-/* =========================================================================================================================== */
-/* ================                                           TMR1                                            ================ */
-/* =========================================================================================================================== */
-
-
-/**
-  * @brief Timer1 register (TMR1)
-  */
-
-typedef struct {                                /*!< (@ 0x40002400) TMR1 Structure                                             */
-  __IOM uint8_t   R8_TMR1_CTRL_MOD;             /*!< (@ 0x00000000) RW, TMR1 mode control                                      */
-  __IOM uint8_t   R8_TMR1_CTRL_DMA;             /*!< (@ 0x00000001) RW, TMR1 DMA control                                       */
-  __IOM uint8_t   R8_TMR1_INTER_EN;             /*!< (@ 0x00000002) RW, TMR1 interrupt enable                                  */
+typedef struct {                                /*!< (@ 0x00000000) TMR Structure                                              */
+  __IOM uint8_t   CTRL_MOD;                     /*!< (@ 0x00000000) RW, TMR1 mode control                                      */
+  __IOM uint8_t   CTRL_DMA;                     /*!< (@ 0x00000001) RW, TMR1 DMA control                                       */
+  __IOM uint8_t   INTER_EN;                     /*!< (@ 0x00000002) RW, TMR1 interrupt enable                                  */
   __IM  uint8_t   RESERVED;
   __IM  uint16_t  RESERVED1;
-  __IOM uint8_t   R8_TMR1_INT_FLAG;             /*!< (@ 0x00000006) RW1, TMR1 interrupt flag                                   */
-  __IM  uint8_t   R8_TMR1_FIFO_COUNT;           /*!< (@ 0x00000007) RO, TMR1 FIFO count status                                 */
-  __IM  uint32_t  R32_TMR1_COUNT;               /*!< (@ 0x00000008) RO, TMR1 current count                                     */
-  __IOM uint32_t  R32_TMR1_CNT_END;             /*!< (@ 0x0000000C) RW, TMR1 end count value, only low 26 bit                  */
+  __IOM uint8_t   INT_FLAG;                     /*!< (@ 0x00000006) RW1, TMR interrupt flag                                    */
+  __IM  uint8_t   FIFO_COUNT;                   /*!< (@ 0x00000007) RO, TMR FIFO count status                                  */
+  __IM  uint32_t  COUNT;                        /*!< (@ 0x00000008) RO, TMR current count                                      */
+  __IOM uint32_t  CNT_END;                      /*!< (@ 0x0000000C) RW, TMR end count value, only low 26 bit                   */
   
   union {
-    __IM  uint32_t R32_TMR1_FIFO_RO;            /*!< (@ 0x00000010) RO, TMR1 FIFO register, only low 26 bit                    */
-    __OM  uint32_t R32_TMR1_FIFO_WO;            /*!< (@ 0x00000010) WO, TMR1 FIFO register, only low 26 bit                    */
+    __IM  uint32_t FIFO_RO;                     /*!< (@ 0x00000010) RO, TMR FIFO register, only low 26 bit                     */
+    __OM  uint32_t FIFO_WO;                     /*!< (@ 0x00000010) WO, TMR FIFO register, only low 26 bit                     */
   };
-  __IM  uint16_t  R16_TMR1_DMA_NOW;             /*!< (@ 0x00000014) RO, TMR1 DMA current address                               */
+  __IM  uint16_t  DMA_NOW;                      /*!< (@ 0x00000014) RO, TMR DMA current address                                */
   __IM  uint16_t  RESERVED2;
-  __IOM uint16_t  R16_TMR1_DMA_BEG;             /*!< (@ 0x00000018) RW, TMR1 DMA begin address                                 */
+  __IOM uint16_t  DMA_BEG;                      /*!< (@ 0x00000018) RW, TMR DMA begin address                                  */
   __IM  uint16_t  RESERVED3;
-  __IOM uint16_t  R16_TMR1_DMA_END;             /*!< (@ 0x0000001C) RW, TMR1 DMA end address                                   */
+  __IOM uint16_t  DMA_END;                      /*!< (@ 0x0000001C) RW, TMR DMA end address                                    */
   __IM  uint16_t  RESERVED4;
-} TMR1_Type;                                    /*!< Size = 32 (0x20)                                                          */
+} TMR_Type;                                     /*!< Size = 32 (0x20)                                                          */
 
 
 
 /* =========================================================================================================================== */
-/* ================                                           TMR2                                            ================ */
-/* =========================================================================================================================== */
-
-
-/**
-  * @brief Timer2 register (TMR2)
-  */
-
-typedef struct {                                /*!< (@ 0x40002800) TMR2 Structure                                             */
-  __IOM uint8_t   R8_TMR2_CTRL_MOD;             /*!< (@ 0x00000000) RW, TMR2 mode control                                      */
-  __IOM uint8_t   R8_TMR2_CTRL_DMA;             /*!< (@ 0x00000001) RW, TMR2 DMA control                                       */
-  __IOM uint8_t   R8_TMR2_INTER_EN;             /*!< (@ 0x00000002) RW, TMR2 interrupt enable                                  */
-  __IM  uint8_t   RESERVED;
-  __IM  uint16_t  RESERVED1;
-  __IOM uint8_t   R8_TMR2_INT_FLAG;             /*!< (@ 0x00000006) RW1, TMR2 interrupt flag                                   */
-  __IM  uint8_t   R8_TMR2_FIFO_COUNT;           /*!< (@ 0x00000007) RO, TMR2 FIFO count status                                 */
-  __IM  uint32_t  R32_TMR2_COUNT;               /*!< (@ 0x00000008) RO, TMR2 current count                                     */
-  __IOM uint32_t  R32_TMR2_CNT_END;             /*!< (@ 0x0000000C) RW, TMR2 end count value, only low 26 bit                  */
-  
-  union {
-    __IM  uint32_t R32_TMR2_FIFO_RO;            /*!< (@ 0x00000010) RO, TMR2 FIFO register, only low 26 bit                    */
-    __OM  uint32_t R32_TMR2_FIFO_WO;            /*!< (@ 0x00000010) WO, TMR2 FIFO register, only low 26 bit                    */
-  };
-  __IM  uint16_t  R16_TMR2_DMA_NOW;             /*!< (@ 0x00000014) RO, TMR2 DMA current address                               */
-  __IM  uint16_t  RESERVED2;
-  __IOM uint16_t  R16_TMR2_DMA_BEG;             /*!< (@ 0x00000018) RW, TMR2 DMA begin address                                 */
-  __IM  uint16_t  RESERVED3;
-  __IOM uint16_t  R16_TMR2_DMA_END;             /*!< (@ 0x0000001C) RW, TMR2 DMA end address                                   */
-  __IM  uint16_t  RESERVED4;
-} TMR2_Type;                                    /*!< Size = 32 (0x20)                                                          */
-
-
-
-/* =========================================================================================================================== */
-/* ================                                           TMR3                                            ================ */
+/* ================                                           UART                                            ================ */
 /* =========================================================================================================================== */
 
 
 /**
-  * @brief Timer3 register (TMR3)
+  * @brief UART register (UART)
   */
 
-typedef struct {                                /*!< (@ 0x40002C00) TMR3 Structure                                             */
-  __IOM uint8_t   R8_TMR3_CTRL_MOD;             /*!< (@ 0x00000000) RW, TMR3 mode control                                      */
-  __IM  uint8_t   RESERVED;
-  __IOM uint8_t   R8_TMR3_INTER_EN;             /*!< (@ 0x00000002) RW, TMR3 interrupt enable                                  */
-  __IM  uint8_t   RESERVED1;
-  __IM  uint16_t  RESERVED2;
-  __IOM uint8_t   R8_TMR3_INT_FLAG;             /*!< (@ 0x00000006) RW1, TMR3 interrupt flag                                   */
-  __IM  uint8_t   R8_TMR3_FIFO_COUNT;           /*!< (@ 0x00000007) RO, TMR3 FIFO count status                                 */
-  __IM  uint32_t  R32_TMR3_COUNT;               /*!< (@ 0x00000008) RO, TMR3 current count                                     */
-  __IOM uint32_t  R32_TMR3_CNT_END;             /*!< (@ 0x0000000C) RW, TMR3 end count value, only low 26 bit                  */
+typedef struct {                                /*!< (@ 0x00000000) UART Structure                                             */
+  __IOM uint8_t   MCR;                          /*!< (@ 0x00000000) RW, UART modem control                                     */
+  __IOM uint8_t   IER;                          /*!< (@ 0x00000001) RW, UART interrupt enable                                  */
+  __IOM uint8_t   FCR;                          /*!< (@ 0x00000002) RW, UART FIFO control                                      */
+  __IOM uint8_t   LCR;                          /*!< (@ 0x00000003) RW, UART line control                                      */
+  __IM  uint8_t   IIR;                          /*!< (@ 0x00000004) RO, UART interrupt identification                          */
+  __IM  uint8_t   LSR;                          /*!< (@ 0x00000005) RO, UART line status                                       */
+  __IM  uint8_t   MSR;                          /*!< (@ 0x00000006) RO, UART modem status                                      */
+  __IM  uint8_t  RESERVED;
   
   union {
-    __IM  uint32_t R32_TMR3_FIFO_RO;            /*!< (@ 0x00000010) RO, TMR3 FIFO register, only low 26 bit                    */
-    __OM  uint32_t R32_TMR3_FIFO_WO;            /*!< (@ 0x00000010) WO, TMR3 FIFO register, only low 26 bit                    */
-  };
-} TMR3_Type;                                    /*!< Size = 20 (0x14)                                                          */
-
-
-
-/* =========================================================================================================================== */
-/* ================                                           UART0                                           ================ */
-/* =========================================================================================================================== */
-
-
-/**
-  * @brief UART0 register (UART0)
-  */
-
-typedef struct {                                /*!< (@ 0x40003000) UART0 Structure                                            */
-  __IOM uint8_t   R8_UART0_MCR;                 /*!< (@ 0x00000000) RW, UART0 modem control                                    */
-  __IOM uint8_t   R8_UART0_IER;                 /*!< (@ 0x00000001) RW, UART0 interrupt enable                                 */
-  __IOM uint8_t   R8_UART0_FCR;                 /*!< (@ 0x00000002) RW, UART0 FIFO control                                     */
-  __IOM uint8_t   R8_UART0_LCR;                 /*!< (@ 0x00000003) RW, UART0 line control                                     */
-  __IM  uint8_t   R8_UART0_IIR;                 /*!< (@ 0x00000004) RO, UART0 interrupt identification                         */
-  __IM  uint8_t   R8_UART0_LSR;                 /*!< (@ 0x00000005) RO, UART0 line status                                      */
-  __IM  uint8_t   R8_UART0_MSR;                 /*!< (@ 0x00000006) RO, UART0 modem status                                     */
-  __IM  uint8_t   RESERVED;
-  
-  union {
-    __IM  uint8_t R8_UART0_RBR;                 /*!< (@ 0x00000008) RO, UART0 receiver buffer, receiving byte                  */
-    __OM  uint8_t R8_UART0_THR;                 /*!< (@ 0x00000008) WO, UART0 transmitter holding, transmittal byte            */
+    __IM  uint8_t RBR;                          /*!< (@ 0x00000008) RO, UART receiver buffer, receiving byte                   */
+    __OM  uint8_t THR;                          /*!< (@ 0x00000008) WO, UART transmitter holding, transmittal byte             */
   };
   __IM  uint8_t   RESERVED1;
-  __IM  uint8_t   R8_UART0_RFC;                 /*!< (@ 0x0000000A) RO, UART0 receiver FIFO count                              */
-  __IM  uint8_t   R8_UART0_TFC;                 /*!< (@ 0x0000000B) RO, UART0 transmitter FIFO count                           */
-  __IOM uint16_t  R16_UART0_DL;                 /*!< (@ 0x0000000C) RW, UART0 divisor latch                                    */
-  __IOM uint8_t   R8_UART0_DIV;                 /*!< (@ 0x0000000E) RW, UART0 pre-divisor latch byte, only low 7
+  __IM  uint8_t   RFC;                          /*!< (@ 0x0000000A) RO, UART receiver FIFO count                               */
+  __IM  uint8_t   TFC;                          /*!< (@ 0x0000000B) RO, UART transmitter FIFO count                            */
+  __IOM uint16_t  DL;                           /*!< (@ 0x0000000C) RW, UART divisor latch                                     */
+  __IOM uint8_t   DIV;                          /*!< (@ 0x0000000E) RW, UART pre-divisor latch byte, only low 7
                                                                     bit, from 1 to 0/128                                       */
-  __IOM uint8_t   R8_UART0_ADR;                 /*!< (@ 0x0000000F) RW, UART0 slave address: 0xFF=disable, other=enable        */
-} UART0_Type;                                   /*!< Size = 16 (0x10)                                                          */
-
-
-
-/* =========================================================================================================================== */
-/* ================                                           UART1                                           ================ */
-/* =========================================================================================================================== */
-
-
-/**
-  * @brief UART1 register (UART1)
-  */
-
-typedef struct {                                /*!< (@ 0x40003400) UART1 Structure                                            */
-  __IOM uint8_t   R8_UART1_MCR;                 /*!< (@ 0x00000000) RW, UART1 modem control                                    */
-  __IOM uint8_t   R8_UART1_IER;                 /*!< (@ 0x00000001) RW, UART1 interrupt enable                                 */
-  __IOM uint8_t   R8_UART1_FCR;                 /*!< (@ 0x00000002) RW, UART1 FIFO control                                     */
-  __IOM uint8_t   R8_UART1_LCR;                 /*!< (@ 0x00000003) RW, UART1 line control                                     */
-  __IM  uint8_t   R8_UART1_IIR;                 /*!< (@ 0x00000004) RO, UART1 interrupt identification                         */
-  __IM  uint8_t   R8_UART1_LSR;                 /*!< (@ 0x00000005) RO, UART1 line status                                      */
-  __IM  uint16_t  RESERVED;
-  
-  union {
-    __IM  uint8_t R8_UART1_RBR;                 /*!< (@ 0x00000008) RO, UART1 receiver buffer, receiving byte                  */
-    __OM  uint8_t R8_UART1_THR;                 /*!< (@ 0x00000008) WO, UART1 transmitter holding, transmittal byte            */
-  };
-  __IM  uint8_t   RESERVED1;
-  __IM  uint8_t   R8_UART1_RFC;                 /*!< (@ 0x0000000A) RO, UART1 receiver FIFO count                              */
-  __IM  uint8_t   R8_UART1_TFC;                 /*!< (@ 0x0000000B) RO, UART1 transmitter FIFO count                           */
-  __IOM uint16_t  R16_UART1_DL;                 /*!< (@ 0x0000000C) RW, UART1 divisor latch                                    */
-  __IOM uint8_t   R8_UART1_DIV;                 /*!< (@ 0x0000000E) RW, UART1 pre-divisor latch byte, only low 7
-                                                                    bit, from 1 to 0/128                                       */
-  __IM  uint8_t   RESERVED2;
-  __IM  uint16_t  RESERVED3;
-} UART1_Type;                                   /*!< Size = 18 (0x12)                                                          */
-
-
-
-/* =========================================================================================================================== */
-/* ================                                           UART2                                           ================ */
-/* =========================================================================================================================== */
-
-
-/**
-  * @brief UART2 register (UART2)
-  */
-
-typedef struct {                                /*!< (@ 0x40003800) UART2 Structure                                            */
-  __IOM uint8_t   R8_UART2_MCR;                 /*!< (@ 0x00000000) RW, UART2 modem control                                    */
-  __IOM uint8_t   R8_UART2_IER;                 /*!< (@ 0x00000001) RW, UART2 interrupt enable                                 */
-  __IOM uint8_t   R8_UART2_FCR;                 /*!< (@ 0x00000002) RW, UART2 FIFO control                                     */
-  __IOM uint8_t   R8_UART2_LCR;                 /*!< (@ 0x00000003) RW, UART2 line control                                     */
-  __IM  uint8_t   R8_UART2_IIR;                 /*!< (@ 0x00000004) RO, UART2 interrupt identification                         */
-  __IM  uint8_t   R8_UART2_LSR;                 /*!< (@ 0x00000005) RO, UART2 line status                                      */
-  __IM  uint16_t  RESERVED;
-  
-  union {
-    __IM  uint8_t R8_UART2_RBR;                 /*!< (@ 0x00000008) RO, UART2 receiver buffer, receiving byte                  */
-    __OM  uint8_t R8_UART2_THR;                 /*!< (@ 0x00000008) WO, UART2 transmitter holding, transmittal byte            */
-  };
-  __IM  uint8_t   RESERVED1;
-  __IM  uint8_t   R8_UART2_RFC;                 /*!< (@ 0x0000000A) RO, UART2 receiver FIFO count                              */
-  __IM  uint8_t   R8_UART2_TFC;                 /*!< (@ 0x0000000B) RO, UART2 transmitter FIFO count                           */
-  __IOM uint16_t  R16_UART2_DL;                 /*!< (@ 0x0000000C) RW, UART2 divisor latch                                    */
-  __IOM uint8_t   R8_UART2_DIV;                 /*!< (@ 0x0000000E) RW, UART2 pre-divisor latch byte, only low 7
-                                                                    bit, from 1 to 0/128                                       */
-  __IM  uint8_t   RESERVED2;
-  __IM  uint16_t  RESERVED3;
-} UART2_Type;                                   /*!< Size = 18 (0x12)                                                          */
-
-
-
-/* =========================================================================================================================== */
-/* ================                                           UART3                                           ================ */
-/* =========================================================================================================================== */
-
-
-/**
-  * @brief UART3 register (UART3)
-  */
-
-typedef struct {                                /*!< (@ 0x40003C00) UART3 Structure                                            */
-  __IOM uint8_t   R8_UART3_MCR;                 /*!< (@ 0x00000000) RW, UART3 modem control                                    */
-  __IOM uint8_t   R8_UART3_IER;                 /*!< (@ 0x00000001) RW, UART3 interrupt enable                                 */
-  __IOM uint8_t   R8_UART3_FCR;                 /*!< (@ 0x00000002) RW, UART3 FIFO control                                     */
-  __IOM uint8_t   R8_UART3_LCR;                 /*!< (@ 0x00000003) RW, UART3 line control                                     */
-  __IM  uint8_t   R8_UART3_IIR;                 /*!< (@ 0x00000004) RO, UART3 interrupt identification                         */
-  __IM  uint8_t   R8_UART3_LSR;                 /*!< (@ 0x00000005) RO, UART3 line status                                      */
-  __IM  uint16_t  RESERVED;
-  
-  union {
-    __IM  uint8_t R8_UART3_RBR;                 /*!< (@ 0x00000008) RO, UART3 receiver buffer, receiving byte                  */
-    __OM  uint8_t R8_UART3_THR;                 /*!< (@ 0x00000008) WO, UART3 transmitter holding, transmittal byte            */
-  };
-  __IM  uint8_t   RESERVED1;
-  __IM  uint8_t   R8_UART3_RFC;                 /*!< (@ 0x0000000A) RO, UART3 receiver FIFO count                              */
-  __IM  uint8_t   R8_UART3_TFC;                 /*!< (@ 0x0000000B) RO, UART3 transmitter FIFO count                           */
-  __IOM uint16_t  R16_UART3_DL;                 /*!< (@ 0x0000000C) RW, UART3 divisor latch                                    */
-  __IOM uint8_t   R8_UART3_DIV;                 /*!< (@ 0x0000000E) RW, UART3 pre-divisor latch byte, only low 7
-                                                                    bit, from 1 to 0/128                                       */
-  __IM  uint8_t   RESERVED2;
-  __IM  uint16_t  RESERVED3;
-} UART3_Type;                                   /*!< Size = 18 (0x12)                                                          */
+  __IOM uint8_t   ADR;                          /*!< (@ 0x0000000F) RW, UART slave address: 0xFF=disable, other=enable         */
+} UART_Type;                                    /*!< Size = 16 (0x10)                                                          */
 
 
 
@@ -841,14 +649,14 @@ typedef struct {                                /*!< (@ 0x40009000) ETH Structur
 
 #define SYS                         ((SYS_Type*)               SYS_BASE)
 #define FLASH                       ((FLASH_Type*)             FLASH_BASE)
-#define TMR0                        ((TMR0_Type*)              TMR0_BASE)
-#define TMR1                        ((TMR1_Type*)              TMR1_BASE)
-#define TMR2                        ((TMR2_Type*)              TMR2_BASE)
-#define TMR3                        ((TMR3_Type*)              TMR3_BASE)
-#define UART0                       ((UART0_Type*)             UART0_BASE)
-#define UART1                       ((UART1_Type*)             UART1_BASE)
-#define UART2                       ((UART2_Type*)             UART2_BASE)
-#define UART3                       ((UART3_Type*)             UART3_BASE)
+#define TMR0                        ((TMR_Type*)               TMR0_BASE)
+#define TMR1                        ((TMR_Type*)               TMR1_BASE)
+#define TMR2                        ((TMR_Type*)               TMR2_BASE)
+#define TMR3                        ((TMR_Type*)               TMR3_BASE)
+#define UART0                       ((UART_Type*)              UART0_BASE)
+#define UART1                       ((UART_Type*)              UART1_BASE)
+#define UART2                       ((UART_Type*)              UART2_BASE)
+#define UART3                       ((UART_Type*)              UART3_BASE)
 #define SPI0                        ((SPI0_Type*)              SPI0_BASE)
 #define SPI1                        ((SPI1_Type*)              SPI1_BASE)
 #define PWMx                        ((PWMx_Type*)              PWMx_BASE)
@@ -1261,529 +1069,167 @@ typedef struct {                                /*!< (@ 0x40009000) ETH Structur
 
 
 /* =========================================================================================================================== */
-/* ================                                           TMR0                                            ================ */
+/* ================                                            TMR                                            ================ */
 /* =========================================================================================================================== */
 
-/* ===================================================  R8_TMR0_CTRL_MOD  ==================================================== */
-#define TMR0_R8_TMR0_CTRL_MOD_RB_TMR_MODE_IN_Pos (0UL)              /*!< RB_TMR_MODE_IN (Bit 0)                                */
-#define TMR0_R8_TMR0_CTRL_MOD_RB_TMR_MODE_IN_Msk (0x1UL)            /*!< RB_TMR_MODE_IN (Bitfield-Mask: 0x01)                  */
-#define TMR0_R8_TMR0_CTRL_MOD_RB_TMR_ALL_CLEAR_Pos (1UL)            /*!< RB_TMR_ALL_CLEAR (Bit 1)                              */
-#define TMR0_R8_TMR0_CTRL_MOD_RB_TMR_ALL_CLEAR_Msk (0x2UL)          /*!< RB_TMR_ALL_CLEAR (Bitfield-Mask: 0x01)                */
-#define TMR0_R8_TMR0_CTRL_MOD_RB_TMR_COUNT_EN_Pos (2UL)             /*!< RB_TMR_COUNT_EN (Bit 2)                               */
-#define TMR0_R8_TMR0_CTRL_MOD_RB_TMR_COUNT_EN_Msk (0x4UL)           /*!< RB_TMR_COUNT_EN (Bitfield-Mask: 0x01)                 */
-#define TMR0_R8_TMR0_CTRL_MOD_RB_TMR_OUT_EN_Pos (3UL)               /*!< RB_TMR_OUT_EN (Bit 3)                                 */
-#define TMR0_R8_TMR0_CTRL_MOD_RB_TMR_OUT_EN_Msk (0x8UL)             /*!< RB_TMR_OUT_EN (Bitfield-Mask: 0x01)                   */
-#define TMR0_R8_TMR0_CTRL_MOD_RB_TMR_OUT_POLAR_COUNT_Pos (4UL)      /*!< RB_TMR_OUT_POLAR_COUNT (Bit 4)                        */
-#define TMR0_R8_TMR0_CTRL_MOD_RB_TMR_OUT_POLAR_COUNT_Msk (0x10UL)   /*!< RB_TMR_OUT_POLAR_COUNT (Bitfield-Mask: 0x01)          */
-#define TMR0_R8_TMR0_CTRL_MOD_RB_TMR_PWM_REPEAT_EDGE_Pos (6UL)      /*!< RB_TMR_PWM_REPEAT_EDGE (Bit 6)                        */
-#define TMR0_R8_TMR0_CTRL_MOD_RB_TMR_PWM_REPEAT_EDGE_Msk (0xc0UL)   /*!< RB_TMR_PWM_REPEAT_EDGE (Bitfield-Mask: 0x03)          */
-/* ===================================================  R8_TMR0_INTER_EN  ==================================================== */
-#define TMR0_R8_TMR0_INTER_EN_RB_TMR_IE_CYC_END_Pos (0UL)           /*!< RB_TMR_IE_CYC_END (Bit 0)                             */
-#define TMR0_R8_TMR0_INTER_EN_RB_TMR_IE_CYC_END_Msk (0x1UL)         /*!< RB_TMR_IE_CYC_END (Bitfield-Mask: 0x01)               */
-#define TMR0_R8_TMR0_INTER_EN_RB_TMR_IE_DATA_ACT_Pos (1UL)          /*!< RB_TMR_IE_DATA_ACT (Bit 1)                            */
-#define TMR0_R8_TMR0_INTER_EN_RB_TMR_IE_DATA_ACT_Msk (0x2UL)        /*!< RB_TMR_IE_DATA_ACT (Bitfield-Mask: 0x01)              */
-#define TMR0_R8_TMR0_INTER_EN_RB_TMR_IE_FIFO_HF_Pos (2UL)           /*!< RB_TMR_IE_FIFO_HF (Bit 2)                             */
-#define TMR0_R8_TMR0_INTER_EN_RB_TMR_IE_FIFO_HF_Msk (0x4UL)         /*!< RB_TMR_IE_FIFO_HF (Bitfield-Mask: 0x01)               */
-#define TMR0_R8_TMR0_INTER_EN_RB_TMR_IE_DMA_END_Pos (3UL)           /*!< RB_TMR_IE_DMA_END (Bit 3)                             */
-#define TMR0_R8_TMR0_INTER_EN_RB_TMR_IE_DMA_END_Msk (0x8UL)         /*!< RB_TMR_IE_DMA_END (Bitfield-Mask: 0x01)               */
-#define TMR0_R8_TMR0_INTER_EN_RB_TMR_IE_FIFO_OV_Pos (4UL)           /*!< RB_TMR_IE_FIFO_OV (Bit 4)                             */
-#define TMR0_R8_TMR0_INTER_EN_RB_TMR_IE_FIFO_OV_Msk (0x10UL)        /*!< RB_TMR_IE_FIFO_OV (Bitfield-Mask: 0x01)               */
-/* ===================================================  R8_TMR0_INT_FLAG  ==================================================== */
-#define TMR0_R8_TMR0_INT_FLAG_RB_TMR_IF_CYC_END_Pos (0UL)           /*!< RB_TMR_IF_CYC_END (Bit 0)                             */
-#define TMR0_R8_TMR0_INT_FLAG_RB_TMR_IF_CYC_END_Msk (0x1UL)         /*!< RB_TMR_IF_CYC_END (Bitfield-Mask: 0x01)               */
-#define TMR0_R8_TMR0_INT_FLAG_RB_TMR_IF_DATA_ACT_Pos (1UL)          /*!< RB_TMR_IF_DATA_ACT (Bit 1)                            */
-#define TMR0_R8_TMR0_INT_FLAG_RB_TMR_IF_DATA_ACT_Msk (0x2UL)        /*!< RB_TMR_IF_DATA_ACT (Bitfield-Mask: 0x01)              */
-#define TMR0_R8_TMR0_INT_FLAG_RB_TMR_IF_FIFO_HF_Pos (2UL)           /*!< RB_TMR_IF_FIFO_HF (Bit 2)                             */
-#define TMR0_R8_TMR0_INT_FLAG_RB_TMR_IF_FIFO_HF_Msk (0x4UL)         /*!< RB_TMR_IF_FIFO_HF (Bitfield-Mask: 0x01)               */
-#define TMR0_R8_TMR0_INT_FLAG_RB_TMR_IF_DMA_END_Pos (3UL)           /*!< RB_TMR_IF_DMA_END (Bit 3)                             */
-#define TMR0_R8_TMR0_INT_FLAG_RB_TMR_IF_DMA_END_Msk (0x8UL)         /*!< RB_TMR_IF_DMA_END (Bitfield-Mask: 0x01)               */
-#define TMR0_R8_TMR0_INT_FLAG_RB_TMR_IF_FIFO_OV_Pos (4UL)           /*!< RB_TMR_IF_FIFO_OV (Bit 4)                             */
-#define TMR0_R8_TMR0_INT_FLAG_RB_TMR_IF_FIFO_OV_Msk (0x10UL)        /*!< RB_TMR_IF_FIFO_OV (Bitfield-Mask: 0x01)               */
-/* ==================================================  R8_TMR0_FIFO_COUNT  =================================================== */
-/* ====================================================  R32_TMR0_COUNT  ===================================================== */
-/* ===================================================  R32_TMR0_CNT_END  ==================================================== */
-/* ===================================================  R32_TMR0_FIFO_RO  ==================================================== */
-/* ===================================================  R32_TMR0_FIFO_WO  ==================================================== */
-
-
-/* =========================================================================================================================== */
-/* ================                                           TMR1                                            ================ */
-/* =========================================================================================================================== */
-
-/* ===================================================  R8_TMR1_CTRL_MOD  ==================================================== */
-#define TMR1_R8_TMR1_CTRL_MOD_RB_TMR_MODE_IN_Pos (0UL)              /*!< RB_TMR_MODE_IN (Bit 0)                                */
-#define TMR1_R8_TMR1_CTRL_MOD_RB_TMR_MODE_IN_Msk (0x1UL)            /*!< RB_TMR_MODE_IN (Bitfield-Mask: 0x01)                  */
-#define TMR1_R8_TMR1_CTRL_MOD_RB_TMR_ALL_CLEAR_Pos (1UL)            /*!< RB_TMR_ALL_CLEAR (Bit 1)                              */
-#define TMR1_R8_TMR1_CTRL_MOD_RB_TMR_ALL_CLEAR_Msk (0x2UL)          /*!< RB_TMR_ALL_CLEAR (Bitfield-Mask: 0x01)                */
-#define TMR1_R8_TMR1_CTRL_MOD_RB_TMR_COUNT_EN_Pos (2UL)             /*!< RB_TMR_COUNT_EN (Bit 2)                               */
-#define TMR1_R8_TMR1_CTRL_MOD_RB_TMR_COUNT_EN_Msk (0x4UL)           /*!< RB_TMR_COUNT_EN (Bitfield-Mask: 0x01)                 */
-#define TMR1_R8_TMR1_CTRL_MOD_RB_TMR_OUT_EN_Pos (3UL)               /*!< RB_TMR_OUT_EN (Bit 3)                                 */
-#define TMR1_R8_TMR1_CTRL_MOD_RB_TMR_OUT_EN_Msk (0x8UL)             /*!< RB_TMR_OUT_EN (Bitfield-Mask: 0x01)                   */
-#define TMR1_R8_TMR1_CTRL_MOD_RB_TMR_OUT_POLAR_COUNT_Pos (4UL)      /*!< RB_TMR_OUT_POLAR_COUNT (Bit 4)                        */
-#define TMR1_R8_TMR1_CTRL_MOD_RB_TMR_OUT_POLAR_COUNT_Msk (0x10UL)   /*!< RB_TMR_OUT_POLAR_COUNT (Bitfield-Mask: 0x01)          */
-#define TMR1_R8_TMR1_CTRL_MOD_RB_TMR_PWM_REPEAT_EDGE_Pos (6UL)      /*!< RB_TMR_PWM_REPEAT_EDGE (Bit 6)                        */
-#define TMR1_R8_TMR1_CTRL_MOD_RB_TMR_PWM_REPEAT_EDGE_Msk (0xc0UL)   /*!< RB_TMR_PWM_REPEAT_EDGE (Bitfield-Mask: 0x03)          */
-/* ===================================================  R8_TMR1_CTRL_DMA  ==================================================== */
-#define TMR1_R8_TMR1_CTRL_DMA_RB_TMR_DMA_ENABLE_Pos (0UL)           /*!< RB_TMR_DMA_ENABLE (Bit 0)                             */
-#define TMR1_R8_TMR1_CTRL_DMA_RB_TMR_DMA_ENABLE_Msk (0x1UL)         /*!< RB_TMR_DMA_ENABLE (Bitfield-Mask: 0x01)               */
-#define TMR1_R8_TMR1_CTRL_DMA_RB_TMR_DMA_LOOP_Pos (2UL)             /*!< RB_TMR_DMA_LOOP (Bit 2)                               */
-#define TMR1_R8_TMR1_CTRL_DMA_RB_TMR_DMA_LOOP_Msk (0x4UL)           /*!< RB_TMR_DMA_LOOP (Bitfield-Mask: 0x01)                 */
-/* ===================================================  R8_TMR1_INTER_EN  ==================================================== */
-#define TMR1_R8_TMR1_INTER_EN_RB_TMR_IE_CYC_END_Pos (0UL)           /*!< RB_TMR_IE_CYC_END (Bit 0)                             */
-#define TMR1_R8_TMR1_INTER_EN_RB_TMR_IE_CYC_END_Msk (0x1UL)         /*!< RB_TMR_IE_CYC_END (Bitfield-Mask: 0x01)               */
-#define TMR1_R8_TMR1_INTER_EN_RB_TMR_IE_DATA_ACT_Pos (1UL)          /*!< RB_TMR_IE_DATA_ACT (Bit 1)                            */
-#define TMR1_R8_TMR1_INTER_EN_RB_TMR_IE_DATA_ACT_Msk (0x2UL)        /*!< RB_TMR_IE_DATA_ACT (Bitfield-Mask: 0x01)              */
-#define TMR1_R8_TMR1_INTER_EN_RB_TMR_IE_FIFO_HF_Pos (2UL)           /*!< RB_TMR_IE_FIFO_HF (Bit 2)                             */
-#define TMR1_R8_TMR1_INTER_EN_RB_TMR_IE_FIFO_HF_Msk (0x4UL)         /*!< RB_TMR_IE_FIFO_HF (Bitfield-Mask: 0x01)               */
-#define TMR1_R8_TMR1_INTER_EN_RB_TMR_IE_DMA_END_Pos (3UL)           /*!< RB_TMR_IE_DMA_END (Bit 3)                             */
-#define TMR1_R8_TMR1_INTER_EN_RB_TMR_IE_DMA_END_Msk (0x8UL)         /*!< RB_TMR_IE_DMA_END (Bitfield-Mask: 0x01)               */
-#define TMR1_R8_TMR1_INTER_EN_RB_TMR_IE_FIFO_OV_Pos (4UL)           /*!< RB_TMR_IE_FIFO_OV (Bit 4)                             */
-#define TMR1_R8_TMR1_INTER_EN_RB_TMR_IE_FIFO_OV_Msk (0x10UL)        /*!< RB_TMR_IE_FIFO_OV (Bitfield-Mask: 0x01)               */
-/* ===================================================  R8_TMR1_INT_FLAG  ==================================================== */
-#define TMR1_R8_TMR1_INT_FLAG_RB_TMR_IF_CYC_END_Pos (0UL)           /*!< RB_TMR_IF_CYC_END (Bit 0)                             */
-#define TMR1_R8_TMR1_INT_FLAG_RB_TMR_IF_CYC_END_Msk (0x1UL)         /*!< RB_TMR_IF_CYC_END (Bitfield-Mask: 0x01)               */
-#define TMR1_R8_TMR1_INT_FLAG_RB_TMR_IF_DATA_ACT_Pos (1UL)          /*!< RB_TMR_IF_DATA_ACT (Bit 1)                            */
-#define TMR1_R8_TMR1_INT_FLAG_RB_TMR_IF_DATA_ACT_Msk (0x2UL)        /*!< RB_TMR_IF_DATA_ACT (Bitfield-Mask: 0x01)              */
-#define TMR1_R8_TMR1_INT_FLAG_RB_TMR_IF_FIFO_HF_Pos (2UL)           /*!< RB_TMR_IF_FIFO_HF (Bit 2)                             */
-#define TMR1_R8_TMR1_INT_FLAG_RB_TMR_IF_FIFO_HF_Msk (0x4UL)         /*!< RB_TMR_IF_FIFO_HF (Bitfield-Mask: 0x01)               */
-#define TMR1_R8_TMR1_INT_FLAG_RB_TMR_IF_DMA_END_Pos (3UL)           /*!< RB_TMR_IF_DMA_END (Bit 3)                             */
-#define TMR1_R8_TMR1_INT_FLAG_RB_TMR_IF_DMA_END_Msk (0x8UL)         /*!< RB_TMR_IF_DMA_END (Bitfield-Mask: 0x01)               */
-#define TMR1_R8_TMR1_INT_FLAG_RB_TMR_IF_FIFO_OV_Pos (4UL)           /*!< RB_TMR_IF_FIFO_OV (Bit 4)                             */
-#define TMR1_R8_TMR1_INT_FLAG_RB_TMR_IF_FIFO_OV_Msk (0x10UL)        /*!< RB_TMR_IF_FIFO_OV (Bitfield-Mask: 0x01)               */
-/* ==================================================  R8_TMR1_FIFO_COUNT  =================================================== */
-/* ====================================================  R32_TMR1_COUNT  ===================================================== */
-/* ===================================================  R32_TMR1_CNT_END  ==================================================== */
-/* ===================================================  R32_TMR1_FIFO_RO  ==================================================== */
-/* ===================================================  R32_TMR1_FIFO_WO  ==================================================== */
-/* ===================================================  R16_TMR1_DMA_NOW  ==================================================== */
-/* ===================================================  R16_TMR1_DMA_BEG  ==================================================== */
-/* ===================================================  R16_TMR1_DMA_END  ==================================================== */
+/* =====================================================  TMR_CTRL_MOD  ====================================================== */
+#define TMR_CTRL_MOD_MODE_IN_Pos (0UL)                              /*!< MODE_IN (Bit 0)                                       */
+#define TMR_CTRL_MOD_MODE_IN_Msk (0x1UL)                            /*!< MODE_IN (Bitfield-Mask: 0x01)                         */
+#define TMR_CTRL_MOD_ALL_CLEAR_Pos (1UL)                            /*!< ALL_CLEAR (Bit 1)                                     */
+#define TMR_CTRL_MOD_ALL_CLEAR_Msk (0x2UL)                          /*!< ALL_CLEAR (Bitfield-Mask: 0x01)                       */
+#define TMR_CTRL_MOD_COUNT_EN_Pos (2UL)                             /*!< COUNT_EN (Bit 2)                                      */
+#define TMR_CTRL_MOD_COUNT_EN_Msk (0x4UL)                           /*!< COUNT_EN (Bitfield-Mask: 0x01)                        */
+#define TMR_CTRL_MOD_OUT_EN_Pos (3UL)                               /*!< OUT_EN (Bit 3)                                        */
+#define TMR_CTRL_MOD_OUT_EN_Msk (0x8UL)                             /*!< OUT_EN (Bitfield-Mask: 0x01)                          */
+#define TMR_CTRL_MOD_OUT_POLAR_COUNT_Pos (4UL)                      /*!< OUT_POLAR_COUNT (Bit 4)                               */
+#define TMR_CTRL_MOD_OUT_POLAR_COUNT_Msk (0x10UL)                   /*!< OUT_POLAR_COUNT (Bitfield-Mask: 0x01)                 */
+#define TMR_CTRL_MOD_PWM_REPEAT_EDGE_Pos (6UL)                      /*!< PWM_REPEAT_EDGE (Bit 6)                               */
+#define TMR_CTRL_MOD_PWM_REPEAT_EDGE_Msk (0xc0UL)                   /*!< PWM_REPEAT_EDGE (Bitfield-Mask: 0x03)                 */
+/* =====================================================  TMR_CTRL_DMA  ====================================================== */
+#define TMR_CTRL_DMA_ENABLE_Pos (0UL)                               /*!< ENABLE (Bit 0)                                        */
+#define TMR_CTRL_DMA_ENABLE_Msk (0x1UL)                             /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define TMR_CTRL_DMA_LOOP_Pos (2UL)                                 /*!< LOOP (Bit 2)                                          */
+#define TMR_CTRL_DMA_LOOP_Msk (0x4UL)                               /*!< LOOP (Bitfield-Mask: 0x01)                            */
+/* =====================================================  TMR_INTER_EN  ====================================================== */
+#define TMR_INTER_EN_CYC_END_Pos (0UL)                              /*!< CYC_END (Bit 0)                                       */
+#define TMR_INTER_EN_CYC_END_Msk (0x1UL)                            /*!< CYC_END (Bitfield-Mask: 0x01)                         */
+#define TMR_INTER_EN_DATA_ACT_Pos (1UL)                             /*!< DATA_ACT (Bit 1)                                      */
+#define TMR_INTER_EN_DATA_ACT_Msk (0x2UL)                           /*!< DATA_ACT (Bitfield-Mask: 0x01)                        */
+#define TMR_INTER_EN_FIFO_HF_Pos (2UL)                              /*!< FIFO_HF (Bit 2)                                       */
+#define TMR_INTER_EN_FIFO_HF_Msk (0x4UL)                            /*!< FIFO_HF (Bitfield-Mask: 0x01)                         */
+#define TMR_INTER_EN_DMA_END_Pos (3UL)                              /*!< DMA_END (Bit 3)                                       */
+#define TMR_INTER_EN_DMA_END_Msk (0x8UL)                            /*!< DMA_END (Bitfield-Mask: 0x01)                         */
+#define TMR_INTER_EN_FIFO_OV_Pos (4UL)                              /*!< FIFO_OV (Bit 4)                                       */
+#define TMR_INTER_EN_FIFO_OV_Msk (0x10UL)                           /*!< FIFO_OV (Bitfield-Mask: 0x01)                         */
+/* =====================================================  TMR_INT_FLAG  ====================================================== */
+#define TMR_INT_FLAG_CYC_END_Pos (0UL)                              /*!< CYC_END (Bit 0)                                       */
+#define TMR_INT_FLAG_CYC_END_Msk (0x1UL)                            /*!< CYC_END (Bitfield-Mask: 0x01)                         */
+#define TMR_INT_FLAG_DATA_ACT_Pos (1UL)                             /*!< DATA_ACT (Bit 1)                                      */
+#define TMR_INT_FLAG_DATA_ACT_Msk (0x2UL)                           /*!< DATA_ACT (Bitfield-Mask: 0x01)                        */
+#define TMR_INT_FLAG_FIFO_HF_Pos (2UL)                              /*!< FIFO_HF (Bit 2)                                       */
+#define TMR_INT_FLAG_FIFO_HF_Msk (0x4UL)                            /*!< FIFO_HF (Bitfield-Mask: 0x01)                         */
+#define TMR_INT_FLAG_DMA_END_Pos (3UL)                              /*!< DMA_END (Bit 3)                                       */
+#define TMR_INT_FLAG_DMA_END_Msk (0x8UL)                            /*!< DMA_END (Bitfield-Mask: 0x01)                         */
+#define TMR_INT_FLAG_FIFO_OV_Pos (4UL)                              /*!< FIFO_OV (Bit 4)                                       */
+#define TMR_INT_FLAG_FIFO_OV_Msk (0x10UL)                           /*!< FIFO_OV (Bitfield-Mask: 0x01)                         */
+/* ====================================================  TMR_FIFO_COUNT  ===================================================== */
+/* =======================================================  TMR_COUNT  ======================================================= */
+/* ======================================================  TMR_CNT_END  ====================================================== */
+/* ======================================================  TMR_FIFO_RO  ====================================================== */
+/* ======================================================  TMR_FIFO_WO  ====================================================== */
+/* ======================================================  TMR_DMA_NOW  ====================================================== */
+/* ======================================================  TMR_DMA_BEG  ====================================================== */
+/* ======================================================  TMR_DMA_END  ====================================================== */
 
 
 /* =========================================================================================================================== */
-/* ================                                           TMR2                                            ================ */
+/* ================                                           UART                                            ================ */
 /* =========================================================================================================================== */
 
-/* ===================================================  R8_TMR2_CTRL_MOD  ==================================================== */
-#define TMR2_R8_TMR2_CTRL_MOD_RB_TMR_MODE_IN_Pos (0UL)              /*!< RB_TMR_MODE_IN (Bit 0)                                */
-#define TMR2_R8_TMR2_CTRL_MOD_RB_TMR_MODE_IN_Msk (0x1UL)            /*!< RB_TMR_MODE_IN (Bitfield-Mask: 0x01)                  */
-#define TMR2_R8_TMR2_CTRL_MOD_RB_TMR_ALL_CLEAR_Pos (1UL)            /*!< RB_TMR_ALL_CLEAR (Bit 1)                              */
-#define TMR2_R8_TMR2_CTRL_MOD_RB_TMR_ALL_CLEAR_Msk (0x2UL)          /*!< RB_TMR_ALL_CLEAR (Bitfield-Mask: 0x01)                */
-#define TMR2_R8_TMR2_CTRL_MOD_RB_TMR_COUNT_EN_Pos (2UL)             /*!< RB_TMR_COUNT_EN (Bit 2)                               */
-#define TMR2_R8_TMR2_CTRL_MOD_RB_TMR_COUNT_EN_Msk (0x4UL)           /*!< RB_TMR_COUNT_EN (Bitfield-Mask: 0x01)                 */
-#define TMR2_R8_TMR2_CTRL_MOD_RB_TMR_OUT_EN_Pos (3UL)               /*!< RB_TMR_OUT_EN (Bit 3)                                 */
-#define TMR2_R8_TMR2_CTRL_MOD_RB_TMR_OUT_EN_Msk (0x8UL)             /*!< RB_TMR_OUT_EN (Bitfield-Mask: 0x01)                   */
-#define TMR2_R8_TMR2_CTRL_MOD_RB_TMR_OUT_POLAR_COUNT_Pos (4UL)      /*!< RB_TMR_OUT_POLAR_COUNT (Bit 4)                        */
-#define TMR2_R8_TMR2_CTRL_MOD_RB_TMR_OUT_POLAR_COUNT_Msk (0x10UL)   /*!< RB_TMR_OUT_POLAR_COUNT (Bitfield-Mask: 0x01)          */
-#define TMR2_R8_TMR2_CTRL_MOD_RB_TMR_PWM_REPEAT_EDGE_Pos (6UL)      /*!< RB_TMR_PWM_REPEAT_EDGE (Bit 6)                        */
-#define TMR2_R8_TMR2_CTRL_MOD_RB_TMR_PWM_REPEAT_EDGE_Msk (0xc0UL)   /*!< RB_TMR_PWM_REPEAT_EDGE (Bitfield-Mask: 0x03)          */
-/* ===================================================  R8_TMR2_CTRL_DMA  ==================================================== */
-#define TMR2_R8_TMR2_CTRL_DMA_RB_TMR_DMA_ENABLE_Pos (0UL)           /*!< RB_TMR_DMA_ENABLE (Bit 0)                             */
-#define TMR2_R8_TMR2_CTRL_DMA_RB_TMR_DMA_ENABLE_Msk (0x1UL)         /*!< RB_TMR_DMA_ENABLE (Bitfield-Mask: 0x01)               */
-#define TMR2_R8_TMR2_CTRL_DMA_RB_TMR_DMA_LOOP_Pos (2UL)             /*!< RB_TMR_DMA_LOOP (Bit 2)                               */
-#define TMR2_R8_TMR2_CTRL_DMA_RB_TMR_DMA_LOOP_Msk (0x4UL)           /*!< RB_TMR_DMA_LOOP (Bitfield-Mask: 0x01)                 */
-/* ===================================================  R8_TMR2_INTER_EN  ==================================================== */
-#define TMR2_R8_TMR2_INTER_EN_RB_TMR_IE_CYC_END_Pos (0UL)           /*!< RB_TMR_IE_CYC_END (Bit 0)                             */
-#define TMR2_R8_TMR2_INTER_EN_RB_TMR_IE_CYC_END_Msk (0x1UL)         /*!< RB_TMR_IE_CYC_END (Bitfield-Mask: 0x01)               */
-#define TMR2_R8_TMR2_INTER_EN_RB_TMR_IE_DATA_ACT_Pos (1UL)          /*!< RB_TMR_IE_DATA_ACT (Bit 1)                            */
-#define TMR2_R8_TMR2_INTER_EN_RB_TMR_IE_DATA_ACT_Msk (0x2UL)        /*!< RB_TMR_IE_DATA_ACT (Bitfield-Mask: 0x01)              */
-#define TMR2_R8_TMR2_INTER_EN_RB_TMR_IE_FIFO_HF_Pos (2UL)           /*!< RB_TMR_IE_FIFO_HF (Bit 2)                             */
-#define TMR2_R8_TMR2_INTER_EN_RB_TMR_IE_FIFO_HF_Msk (0x4UL)         /*!< RB_TMR_IE_FIFO_HF (Bitfield-Mask: 0x01)               */
-#define TMR2_R8_TMR2_INTER_EN_RB_TMR_IE_DMA_END_Pos (3UL)           /*!< RB_TMR_IE_DMA_END (Bit 3)                             */
-#define TMR2_R8_TMR2_INTER_EN_RB_TMR_IE_DMA_END_Msk (0x8UL)         /*!< RB_TMR_IE_DMA_END (Bitfield-Mask: 0x01)               */
-#define TMR2_R8_TMR2_INTER_EN_RB_TMR_IE_FIFO_OV_Pos (4UL)           /*!< RB_TMR_IE_FIFO_OV (Bit 4)                             */
-#define TMR2_R8_TMR2_INTER_EN_RB_TMR_IE_FIFO_OV_Msk (0x10UL)        /*!< RB_TMR_IE_FIFO_OV (Bitfield-Mask: 0x01)               */
-/* ===================================================  R8_TMR2_INT_FLAG  ==================================================== */
-#define TMR2_R8_TMR2_INT_FLAG_RB_TMR_IF_CYC_END_Pos (0UL)           /*!< RB_TMR_IF_CYC_END (Bit 0)                             */
-#define TMR2_R8_TMR2_INT_FLAG_RB_TMR_IF_CYC_END_Msk (0x1UL)         /*!< RB_TMR_IF_CYC_END (Bitfield-Mask: 0x01)               */
-#define TMR2_R8_TMR2_INT_FLAG_RB_TMR_IF_DATA_ACT_Pos (1UL)          /*!< RB_TMR_IF_DATA_ACT (Bit 1)                            */
-#define TMR2_R8_TMR2_INT_FLAG_RB_TMR_IF_DATA_ACT_Msk (0x2UL)        /*!< RB_TMR_IF_DATA_ACT (Bitfield-Mask: 0x01)              */
-#define TMR2_R8_TMR2_INT_FLAG_RB_TMR_IF_FIFO_HF_Pos (2UL)           /*!< RB_TMR_IF_FIFO_HF (Bit 2)                             */
-#define TMR2_R8_TMR2_INT_FLAG_RB_TMR_IF_FIFO_HF_Msk (0x4UL)         /*!< RB_TMR_IF_FIFO_HF (Bitfield-Mask: 0x01)               */
-#define TMR2_R8_TMR2_INT_FLAG_RB_TMR_IF_DMA_END_Pos (3UL)           /*!< RB_TMR_IF_DMA_END (Bit 3)                             */
-#define TMR2_R8_TMR2_INT_FLAG_RB_TMR_IF_DMA_END_Msk (0x8UL)         /*!< RB_TMR_IF_DMA_END (Bitfield-Mask: 0x01)               */
-#define TMR2_R8_TMR2_INT_FLAG_RB_TMR_IF_FIFO_OV_Pos (4UL)           /*!< RB_TMR_IF_FIFO_OV (Bit 4)                             */
-#define TMR2_R8_TMR2_INT_FLAG_RB_TMR_IF_FIFO_OV_Msk (0x10UL)        /*!< RB_TMR_IF_FIFO_OV (Bitfield-Mask: 0x01)               */
-/* ==================================================  R8_TMR2_FIFO_COUNT  =================================================== */
-/* ====================================================  R32_TMR2_COUNT  ===================================================== */
-/* ===================================================  R32_TMR2_CNT_END  ==================================================== */
-/* ===================================================  R32_TMR2_FIFO_RO  ==================================================== */
-/* ===================================================  R32_TMR2_FIFO_WO  ==================================================== */
-/* ===================================================  R16_TMR2_DMA_NOW  ==================================================== */
-/* ===================================================  R16_TMR2_DMA_BEG  ==================================================== */
-/* ===================================================  R16_TMR2_DMA_END  ==================================================== */
-
-
-/* =========================================================================================================================== */
-/* ================                                           TMR3                                            ================ */
-/* =========================================================================================================================== */
-
-/* ===================================================  R8_TMR3_CTRL_MOD  ==================================================== */
-#define TMR3_R8_TMR3_CTRL_MOD_RB_TMR_MODE_IN_Pos (0UL)              /*!< RB_TMR_MODE_IN (Bit 0)                                */
-#define TMR3_R8_TMR3_CTRL_MOD_RB_TMR_MODE_IN_Msk (0x1UL)            /*!< RB_TMR_MODE_IN (Bitfield-Mask: 0x01)                  */
-#define TMR3_R8_TMR3_CTRL_MOD_RB_TMR_ALL_CLEAR_Pos (1UL)            /*!< RB_TMR_ALL_CLEAR (Bit 1)                              */
-#define TMR3_R8_TMR3_CTRL_MOD_RB_TMR_ALL_CLEAR_Msk (0x2UL)          /*!< RB_TMR_ALL_CLEAR (Bitfield-Mask: 0x01)                */
-#define TMR3_R8_TMR3_CTRL_MOD_RB_TMR_COUNT_EN_Pos (2UL)             /*!< RB_TMR_COUNT_EN (Bit 2)                               */
-#define TMR3_R8_TMR3_CTRL_MOD_RB_TMR_COUNT_EN_Msk (0x4UL)           /*!< RB_TMR_COUNT_EN (Bitfield-Mask: 0x01)                 */
-#define TMR3_R8_TMR3_CTRL_MOD_RB_TMR_OUT_EN_Pos (3UL)               /*!< RB_TMR_OUT_EN (Bit 3)                                 */
-#define TMR3_R8_TMR3_CTRL_MOD_RB_TMR_OUT_EN_Msk (0x8UL)             /*!< RB_TMR_OUT_EN (Bitfield-Mask: 0x01)                   */
-#define TMR3_R8_TMR3_CTRL_MOD_RB_TMR_OUT_POLAR_COUNT_Pos (4UL)      /*!< RB_TMR_OUT_POLAR_COUNT (Bit 4)                        */
-#define TMR3_R8_TMR3_CTRL_MOD_RB_TMR_OUT_POLAR_COUNT_Msk (0x10UL)   /*!< RB_TMR_OUT_POLAR_COUNT (Bitfield-Mask: 0x01)          */
-#define TMR3_R8_TMR3_CTRL_MOD_RB_TMR_PWM_REPEAT_EDGE_Pos (6UL)      /*!< RB_TMR_PWM_REPEAT_EDGE (Bit 6)                        */
-#define TMR3_R8_TMR3_CTRL_MOD_RB_TMR_PWM_REPEAT_EDGE_Msk (0xc0UL)   /*!< RB_TMR_PWM_REPEAT_EDGE (Bitfield-Mask: 0x03)          */
-/* ===================================================  R8_TMR3_INTER_EN  ==================================================== */
-#define TMR3_R8_TMR3_INTER_EN_RB_TMR_IE_CYC_END_Pos (0UL)           /*!< RB_TMR_IE_CYC_END (Bit 0)                             */
-#define TMR3_R8_TMR3_INTER_EN_RB_TMR_IE_CYC_END_Msk (0x1UL)         /*!< RB_TMR_IE_CYC_END (Bitfield-Mask: 0x01)               */
-#define TMR3_R8_TMR3_INTER_EN_RB_TMR_IE_DATA_ACT_Pos (1UL)          /*!< RB_TMR_IE_DATA_ACT (Bit 1)                            */
-#define TMR3_R8_TMR3_INTER_EN_RB_TMR_IE_DATA_ACT_Msk (0x2UL)        /*!< RB_TMR_IE_DATA_ACT (Bitfield-Mask: 0x01)              */
-#define TMR3_R8_TMR3_INTER_EN_RB_TMR_IE_FIFO_HF_Pos (2UL)           /*!< RB_TMR_IE_FIFO_HF (Bit 2)                             */
-#define TMR3_R8_TMR3_INTER_EN_RB_TMR_IE_FIFO_HF_Msk (0x4UL)         /*!< RB_TMR_IE_FIFO_HF (Bitfield-Mask: 0x01)               */
-#define TMR3_R8_TMR3_INTER_EN_RB_TMR_IE_DMA_END_Pos (3UL)           /*!< RB_TMR_IE_DMA_END (Bit 3)                             */
-#define TMR3_R8_TMR3_INTER_EN_RB_TMR_IE_DMA_END_Msk (0x8UL)         /*!< RB_TMR_IE_DMA_END (Bitfield-Mask: 0x01)               */
-#define TMR3_R8_TMR3_INTER_EN_RB_TMR_IE_FIFO_OV_Pos (4UL)           /*!< RB_TMR_IE_FIFO_OV (Bit 4)                             */
-#define TMR3_R8_TMR3_INTER_EN_RB_TMR_IE_FIFO_OV_Msk (0x10UL)        /*!< RB_TMR_IE_FIFO_OV (Bitfield-Mask: 0x01)               */
-/* ===================================================  R8_TMR3_INT_FLAG  ==================================================== */
-#define TMR3_R8_TMR3_INT_FLAG_RB_TMR_IF_CYC_END_Pos (0UL)           /*!< RB_TMR_IF_CYC_END (Bit 0)                             */
-#define TMR3_R8_TMR3_INT_FLAG_RB_TMR_IF_CYC_END_Msk (0x1UL)         /*!< RB_TMR_IF_CYC_END (Bitfield-Mask: 0x01)               */
-#define TMR3_R8_TMR3_INT_FLAG_RB_TMR_IF_DATA_ACT_Pos (1UL)          /*!< RB_TMR_IF_DATA_ACT (Bit 1)                            */
-#define TMR3_R8_TMR3_INT_FLAG_RB_TMR_IF_DATA_ACT_Msk (0x2UL)        /*!< RB_TMR_IF_DATA_ACT (Bitfield-Mask: 0x01)              */
-#define TMR3_R8_TMR3_INT_FLAG_RB_TMR_IF_FIFO_HF_Pos (2UL)           /*!< RB_TMR_IF_FIFO_HF (Bit 2)                             */
-#define TMR3_R8_TMR3_INT_FLAG_RB_TMR_IF_FIFO_HF_Msk (0x4UL)         /*!< RB_TMR_IF_FIFO_HF (Bitfield-Mask: 0x01)               */
-#define TMR3_R8_TMR3_INT_FLAG_RB_TMR_IF_DMA_END_Pos (3UL)           /*!< RB_TMR_IF_DMA_END (Bit 3)                             */
-#define TMR3_R8_TMR3_INT_FLAG_RB_TMR_IF_DMA_END_Msk (0x8UL)         /*!< RB_TMR_IF_DMA_END (Bitfield-Mask: 0x01)               */
-#define TMR3_R8_TMR3_INT_FLAG_RB_TMR_IF_FIFO_OV_Pos (4UL)           /*!< RB_TMR_IF_FIFO_OV (Bit 4)                             */
-#define TMR3_R8_TMR3_INT_FLAG_RB_TMR_IF_FIFO_OV_Msk (0x10UL)        /*!< RB_TMR_IF_FIFO_OV (Bitfield-Mask: 0x01)               */
-/* ==================================================  R8_TMR3_FIFO_COUNT  =================================================== */
-/* ====================================================  R32_TMR3_COUNT  ===================================================== */
-/* ===================================================  R32_TMR3_CNT_END  ==================================================== */
-/* ===================================================  R32_TMR3_FIFO_RO  ==================================================== */
-/* ===================================================  R32_TMR3_FIFO_WO  ==================================================== */
-
-
-/* =========================================================================================================================== */
-/* ================                                           UART0                                           ================ */
-/* =========================================================================================================================== */
-
-/* =====================================================  R8_UART0_MCR  ====================================================== */
-#define UART0_R8_UART0_MCR_RB_MCR_DTR_Pos (0UL)                     /*!< RB_MCR_DTR (Bit 0)                                    */
-#define UART0_R8_UART0_MCR_RB_MCR_DTR_Msk (0x1UL)                   /*!< RB_MCR_DTR (Bitfield-Mask: 0x01)                      */
-#define UART0_R8_UART0_MCR_RB_MCR_RTS_Pos (1UL)                     /*!< RB_MCR_RTS (Bit 1)                                    */
-#define UART0_R8_UART0_MCR_RB_MCR_RTS_Msk (0x2UL)                   /*!< RB_MCR_RTS (Bitfield-Mask: 0x01)                      */
-#define UART0_R8_UART0_MCR_RB_MCR_OUT1_Pos (2UL)                    /*!< RB_MCR_OUT1 (Bit 2)                                   */
-#define UART0_R8_UART0_MCR_RB_MCR_OUT1_Msk (0x4UL)                  /*!< RB_MCR_OUT1 (Bitfield-Mask: 0x01)                     */
-#define UART0_R8_UART0_MCR_RB_MCR_OUT2_Pos (3UL)                    /*!< RB_MCR_OUT2 (Bit 3)                                   */
-#define UART0_R8_UART0_MCR_RB_MCR_OUT2_Msk (0x8UL)                  /*!< RB_MCR_OUT2 (Bitfield-Mask: 0x01)                     */
-#define UART0_R8_UART0_MCR_RB_MCR_LOOP_Pos (4UL)                    /*!< RB_MCR_LOOP (Bit 4)                                   */
-#define UART0_R8_UART0_MCR_RB_MCR_LOOP_Msk (0x10UL)                 /*!< RB_MCR_LOOP (Bitfield-Mask: 0x01)                     */
-#define UART0_R8_UART0_MCR_RB_MCR_AU_FLOW_EN_Pos (5UL)              /*!< RB_MCR_AU_FLOW_EN (Bit 5)                             */
-#define UART0_R8_UART0_MCR_RB_MCR_AU_FLOW_EN_Msk (0x20UL)           /*!< RB_MCR_AU_FLOW_EN (Bitfield-Mask: 0x01)               */
-#define UART0_R8_UART0_MCR_RB_MCR_TNOW_Pos (6UL)                    /*!< RB_MCR_TNOW (Bit 6)                                   */
-#define UART0_R8_UART0_MCR_RB_MCR_TNOW_Msk (0x40UL)                 /*!< RB_MCR_TNOW (Bitfield-Mask: 0x01)                     */
-#define UART0_R8_UART0_MCR_RB_MCR_HALF_Pos (7UL)                    /*!< RB_MCR_HALF (Bit 7)                                   */
-#define UART0_R8_UART0_MCR_RB_MCR_HALF_Msk (0x80UL)                 /*!< RB_MCR_HALF (Bitfield-Mask: 0x01)                     */
-/* =====================================================  R8_UART0_IER  ====================================================== */
-#define UART0_R8_UART0_IER_RB_IER_RECV_RDY_Pos (0UL)                /*!< RB_IER_RECV_RDY (Bit 0)                               */
-#define UART0_R8_UART0_IER_RB_IER_RECV_RDY_Msk (0x1UL)              /*!< RB_IER_RECV_RDY (Bitfield-Mask: 0x01)                 */
-#define UART0_R8_UART0_IER_RB_IER_THR_EMPTY_Pos (1UL)               /*!< RB_IER_THR_EMPTY (Bit 1)                              */
-#define UART0_R8_UART0_IER_RB_IER_THR_EMPTY_Msk (0x2UL)             /*!< RB_IER_THR_EMPTY (Bitfield-Mask: 0x01)                */
-#define UART0_R8_UART0_IER_RB_IER_LINE_STAT_Pos (2UL)               /*!< RB_IER_LINE_STAT (Bit 2)                              */
-#define UART0_R8_UART0_IER_RB_IER_LINE_STAT_Msk (0x4UL)             /*!< RB_IER_LINE_STAT (Bitfield-Mask: 0x01)                */
-#define UART0_R8_UART0_IER_RB_IER_MODEM_CHG_Pos (3UL)               /*!< RB_IER_MODEM_CHG (Bit 3)                              */
-#define UART0_R8_UART0_IER_RB_IER_MODEM_CHG_Msk (0x8UL)             /*!< RB_IER_MODEM_CHG (Bitfield-Mask: 0x01)                */
-#define UART0_R8_UART0_IER_RB_IER_DTR_EN_Pos (4UL)                  /*!< RB_IER_DTR_EN (Bit 4)                                 */
-#define UART0_R8_UART0_IER_RB_IER_DTR_EN_Msk (0x10UL)               /*!< RB_IER_DTR_EN (Bitfield-Mask: 0x01)                   */
-#define UART0_R8_UART0_IER_RB_IER_RTS_EN_Pos (5UL)                  /*!< RB_IER_RTS_EN (Bit 5)                                 */
-#define UART0_R8_UART0_IER_RB_IER_RTS_EN_Msk (0x20UL)               /*!< RB_IER_RTS_EN (Bitfield-Mask: 0x01)                   */
-#define UART0_R8_UART0_IER_RB_IER_TXD_EN_Pos (6UL)                  /*!< RB_IER_TXD_EN (Bit 6)                                 */
-#define UART0_R8_UART0_IER_RB_IER_TXD_EN_Msk (0x40UL)               /*!< RB_IER_TXD_EN (Bitfield-Mask: 0x01)                   */
-#define UART0_R8_UART0_IER_RB_IER_RESET_Pos (7UL)                   /*!< RB_IER_RESET (Bit 7)                                  */
-#define UART0_R8_UART0_IER_RB_IER_RESET_Msk (0x80UL)                /*!< RB_IER_RESET (Bitfield-Mask: 0x01)                    */
-/* =====================================================  R8_UART0_FCR  ====================================================== */
-#define UART0_R8_UART0_FCR_RB_FCR_FIFO_EN_Pos (0UL)                 /*!< RB_FCR_FIFO_EN (Bit 0)                                */
-#define UART0_R8_UART0_FCR_RB_FCR_FIFO_EN_Msk (0x1UL)               /*!< RB_FCR_FIFO_EN (Bitfield-Mask: 0x01)                  */
-#define UART0_R8_UART0_FCR_RB_FCR_RX_FIFO_CLR_Pos (1UL)             /*!< RB_FCR_RX_FIFO_CLR (Bit 1)                            */
-#define UART0_R8_UART0_FCR_RB_FCR_RX_FIFO_CLR_Msk (0x2UL)           /*!< RB_FCR_RX_FIFO_CLR (Bitfield-Mask: 0x01)              */
-#define UART0_R8_UART0_FCR_RB_FCR_TX_FIFO_CLR_Pos (2UL)             /*!< RB_FCR_TX_FIFO_CLR (Bit 2)                            */
-#define UART0_R8_UART0_FCR_RB_FCR_TX_FIFO_CLR_Msk (0x4UL)           /*!< RB_FCR_TX_FIFO_CLR (Bitfield-Mask: 0x01)              */
-#define UART0_R8_UART0_FCR_RB_FCR_FIFO_TRIG_Pos (6UL)               /*!< RB_FCR_FIFO_TRIG (Bit 6)                              */
-#define UART0_R8_UART0_FCR_RB_FCR_FIFO_TRIG_Msk (0xc0UL)            /*!< RB_FCR_FIFO_TRIG (Bitfield-Mask: 0x03)                */
-/* =====================================================  R8_UART0_LCR  ====================================================== */
-#define UART0_R8_UART0_LCR_RB_LCR_WORD_SZ_Pos (0UL)                 /*!< RB_LCR_WORD_SZ (Bit 0)                                */
-#define UART0_R8_UART0_LCR_RB_LCR_WORD_SZ_Msk (0x3UL)               /*!< RB_LCR_WORD_SZ (Bitfield-Mask: 0x03)                  */
-#define UART0_R8_UART0_LCR_RB_LCR_STOP_BIT_Pos (2UL)                /*!< RB_LCR_STOP_BIT (Bit 2)                               */
-#define UART0_R8_UART0_LCR_RB_LCR_STOP_BIT_Msk (0x4UL)              /*!< RB_LCR_STOP_BIT (Bitfield-Mask: 0x01)                 */
-#define UART0_R8_UART0_LCR_RB_LCR_PAR_EN_Pos (3UL)                  /*!< RB_LCR_PAR_EN (Bit 3)                                 */
-#define UART0_R8_UART0_LCR_RB_LCR_PAR_EN_Msk (0x8UL)                /*!< RB_LCR_PAR_EN (Bitfield-Mask: 0x01)                   */
-#define UART0_R8_UART0_LCR_RB_LCR_PAR_MOD_Pos (4UL)                 /*!< RB_LCR_PAR_MOD (Bit 4)                                */
-#define UART0_R8_UART0_LCR_RB_LCR_PAR_MOD_Msk (0x30UL)              /*!< RB_LCR_PAR_MOD (Bitfield-Mask: 0x03)                  */
-#define UART0_R8_UART0_LCR_RB_LCR_BREAK_EN_Pos (6UL)                /*!< RB_LCR_BREAK_EN (Bit 6)                               */
-#define UART0_R8_UART0_LCR_RB_LCR_BREAK_EN_Msk (0x40UL)             /*!< RB_LCR_BREAK_EN (Bitfield-Mask: 0x01)                 */
-#define UART0_R8_UART0_LCR_RB_LCR_GP_BIT__RB_LCR_DLAB_Pos (7UL)     /*!< RB_LCR_GP_BIT__RB_LCR_DLAB (Bit 7)                    */
-#define UART0_R8_UART0_LCR_RB_LCR_GP_BIT__RB_LCR_DLAB_Msk (0x80UL)  /*!< RB_LCR_GP_BIT__RB_LCR_DLAB (Bitfield-Mask: 0x01)      */
-/* =====================================================  R8_UART0_IIR  ====================================================== */
-#define UART0_R8_UART0_IIR_RB_IIR_NO_INT_Pos (0UL)                  /*!< RB_IIR_NO_INT (Bit 0)                                 */
-#define UART0_R8_UART0_IIR_RB_IIR_NO_INT_Msk (0x1UL)                /*!< RB_IIR_NO_INT (Bitfield-Mask: 0x01)                   */
-#define UART0_R8_UART0_IIR_RB_IIR_INT_MASK_Pos (1UL)                /*!< RB_IIR_INT_MASK (Bit 1)                               */
-#define UART0_R8_UART0_IIR_RB_IIR_INT_MASK_Msk (0xeUL)              /*!< RB_IIR_INT_MASK (Bitfield-Mask: 0x07)                 */
-#define UART0_R8_UART0_IIR_RB_IIR_FIFO_ID_Pos (7UL)                 /*!< RB_IIR_FIFO_ID (Bit 7)                                */
-#define UART0_R8_UART0_IIR_RB_IIR_FIFO_ID_Msk (0x80UL)              /*!< RB_IIR_FIFO_ID (Bitfield-Mask: 0x01)                  */
-/* =====================================================  R8_UART0_LSR  ====================================================== */
-#define UART0_R8_UART0_LSR_RB_LSR_DATA_RDY_Pos (0UL)                /*!< RB_LSR_DATA_RDY (Bit 0)                               */
-#define UART0_R8_UART0_LSR_RB_LSR_DATA_RDY_Msk (0x1UL)              /*!< RB_LSR_DATA_RDY (Bitfield-Mask: 0x01)                 */
-#define UART0_R8_UART0_LSR_RB_LSR_OVER_ERR_Pos (1UL)                /*!< RB_LSR_OVER_ERR (Bit 1)                               */
-#define UART0_R8_UART0_LSR_RB_LSR_OVER_ERR_Msk (0x2UL)              /*!< RB_LSR_OVER_ERR (Bitfield-Mask: 0x01)                 */
-#define UART0_R8_UART0_LSR_RB_LSR_PAR_ERR_Pos (2UL)                 /*!< RB_LSR_PAR_ERR (Bit 2)                                */
-#define UART0_R8_UART0_LSR_RB_LSR_PAR_ERR_Msk (0x4UL)               /*!< RB_LSR_PAR_ERR (Bitfield-Mask: 0x01)                  */
-#define UART0_R8_UART0_LSR_RB_LSR_FRAME_ERR_Pos (3UL)               /*!< RB_LSR_FRAME_ERR (Bit 3)                              */
-#define UART0_R8_UART0_LSR_RB_LSR_FRAME_ERR_Msk (0x8UL)             /*!< RB_LSR_FRAME_ERR (Bitfield-Mask: 0x01)                */
-#define UART0_R8_UART0_LSR_RB_LSR_BREAK_ERR_Pos (4UL)               /*!< RB_LSR_BREAK_ERR (Bit 4)                              */
-#define UART0_R8_UART0_LSR_RB_LSR_BREAK_ERR_Msk (0x10UL)            /*!< RB_LSR_BREAK_ERR (Bitfield-Mask: 0x01)                */
-#define UART0_R8_UART0_LSR_RB_LSR_TX_FIFO_EMP_Pos (5UL)             /*!< RB_LSR_TX_FIFO_EMP (Bit 5)                            */
-#define UART0_R8_UART0_LSR_RB_LSR_TX_FIFO_EMP_Msk (0x20UL)          /*!< RB_LSR_TX_FIFO_EMP (Bitfield-Mask: 0x01)              */
-#define UART0_R8_UART0_LSR_RB_LSR_TX_ALL_EMP_Pos (6UL)              /*!< RB_LSR_TX_ALL_EMP (Bit 6)                             */
-#define UART0_R8_UART0_LSR_RB_LSR_TX_ALL_EMP_Msk (0x40UL)           /*!< RB_LSR_TX_ALL_EMP (Bitfield-Mask: 0x01)               */
-#define UART0_R8_UART0_LSR_RB_LSR_ERR_RX_FIFO_Pos (7UL)             /*!< RB_LSR_ERR_RX_FIFO (Bit 7)                            */
-#define UART0_R8_UART0_LSR_RB_LSR_ERR_RX_FIFO_Msk (0x80UL)          /*!< RB_LSR_ERR_RX_FIFO (Bitfield-Mask: 0x01)              */
+/* =======================================================  UART_MCR  ======================================================== */
+#define UART_MCR_DTR_Pos (0UL)                                      /*!< DTR (Bit 0)                                           */
+#define UART_MCR_DTR_Msk (0x1UL)                                    /*!< DTR (Bitfield-Mask: 0x01)                             */
+#define UART_MCR_RTS_Pos (1UL)                                      /*!< RTS (Bit 1)                                           */
+#define UART_MCR_RTS_Msk (0x2UL)                                    /*!< RTS (Bitfield-Mask: 0x01)                             */
+#define UART_MCR_OUT1_Pos (2UL)                                     /*!< OUT1 (Bit 2)                                          */
+#define UART_MCR_OUT1_Msk (0x4UL)                                   /*!< OUT1 (Bitfield-Mask: 0x01)                            */
+#define UART_MCR_OUT2_Pos (3UL)                                     /*!< OUT2 (Bit 3)                                          */
+#define UART_MCR_OUT2_Msk (0x8UL)                                   /*!< OUT2 (Bitfield-Mask: 0x01)                            */
+#define UART_MCR_LOOP_Pos (4UL)                                     /*!< LOOP (Bit 4)                                          */
+#define UART_MCR_LOOP_Msk (0x10UL)                                  /*!< LOOP (Bitfield-Mask: 0x01)                            */
+#define UART_MCR_AU_FLOW_EN_Pos (5UL)                               /*!< AU_FLOW_EN (Bit 5)                                    */
+#define UART_MCR_AU_FLOW_EN_Msk (0x20UL)                            /*!< AU_FLOW_EN (Bitfield-Mask: 0x01)                      */
+#define UART_MCR_TNOW_Pos (6UL)                                     /*!< TNOW (Bit 6)                                          */
+#define UART_MCR_TNOW_Msk (0x40UL)                                  /*!< TNOW (Bitfield-Mask: 0x01)                            */
+#define UART_MCR_HALF_Pos (7UL)                                     /*!< HALF (Bit 7)                                          */
+#define UART_MCR_HALF_Msk (0x80UL)                                  /*!< HALF (Bitfield-Mask: 0x01)                            */
+/* =======================================================  UART_IER  ======================================================== */
+#define UART_IER_RECV_RDY_Pos (0UL)                                 /*!< RECV_RDY (Bit 0)                                      */
+#define UART_IER_RECV_RDY_Msk (0x1UL)                               /*!< RECV_RDY (Bitfield-Mask: 0x01)                        */
+#define UART_IER_THR_EMPTY_Pos (1UL)                                /*!< THR_EMPTY (Bit 1)                                     */
+#define UART_IER_THR_EMPTY_Msk (0x2UL)                              /*!< THR_EMPTY (Bitfield-Mask: 0x01)                       */
+#define UART_IER_LINE_STAT_Pos (2UL)                                /*!< LINE_STAT (Bit 2)                                     */
+#define UART_IER_LINE_STAT_Msk (0x4UL)                              /*!< LINE_STAT (Bitfield-Mask: 0x01)                       */
+#define UART_IER_MODEM_CHG_Pos (3UL)                                /*!< MODEM_CHG (Bit 3)                                     */
+#define UART_IER_MODEM_CHG_Msk (0x8UL)                              /*!< MODEM_CHG (Bitfield-Mask: 0x01)                       */
+#define UART_IER_DTR_EN_Pos (4UL)                                   /*!< DTR_EN (Bit 4)                                        */
+#define UART_IER_DTR_EN_Msk (0x10UL)                                /*!< DTR_EN (Bitfield-Mask: 0x01)                          */
+#define UART_IER_RTS_EN_Pos (5UL)                                   /*!< RTS_EN (Bit 5)                                        */
+#define UART_IER_RTS_EN_Msk (0x20UL)                                /*!< RTS_EN (Bitfield-Mask: 0x01)                          */
+#define UART_IER_TXD_EN_Pos (6UL)                                   /*!< TXD_EN (Bit 6)                                        */
+#define UART_IER_TXD_EN_Msk (0x40UL)                                /*!< TXD_EN (Bitfield-Mask: 0x01)                          */
+#define UART_IER_RESET_Pos (7UL)                                    /*!< RESET (Bit 7)                                         */
+#define UART_IER_RESET_Msk (0x80UL)                                 /*!< RESET (Bitfield-Mask: 0x01)                           */
+/* =======================================================  UART_FCR  ======================================================== */
+#define UART_FCR_FIFO_EN_Pos (0UL)                                  /*!< FIFO_EN (Bit 0)                                       */
+#define UART_FCR_FIFO_EN_Msk (0x1UL)                                /*!< FIFO_EN (Bitfield-Mask: 0x01)                         */
+#define UART_FCR_RX_FIFO_CLR_Pos (1UL)                              /*!< RX_FIFO_CLR (Bit 1)                                   */
+#define UART_FCR_RX_FIFO_CLR_Msk (0x2UL)                            /*!< RX_FIFO_CLR (Bitfield-Mask: 0x01)                     */
+#define UART_FCR_TX_FIFO_CLR_Pos (2UL)                              /*!< TX_FIFO_CLR (Bit 2)                                   */
+#define UART_FCR_TX_FIFO_CLR_Msk (0x4UL)                            /*!< TX_FIFO_CLR (Bitfield-Mask: 0x01)                     */
+#define UART_FCR_FIFO_TRIG_Pos (6UL)                                /*!< FIFO_TRIG (Bit 6)                                     */
+#define UART_FCR_FIFO_TRIG_Msk (0xc0UL)                             /*!< FIFO_TRIG (Bitfield-Mask: 0x03)                       */
+/* =======================================================  UART_LCR  ======================================================== */
+#define UART_LCR_WORD_SZ_Pos (0UL)                                  /*!< WORD_SZ (Bit 0)                                       */
+#define UART_LCR_WORD_SZ_Msk (0x3UL)                                /*!< WORD_SZ (Bitfield-Mask: 0x03)                         */
+#define UART_LCR_STOP_BIT_Pos (2UL)                                 /*!< STOP_BIT (Bit 2)                                      */
+#define UART_LCR_STOP_BIT_Msk (0x4UL)                               /*!< STOP_BIT (Bitfield-Mask: 0x01)                        */
+#define UART_LCR_PAR_EN_Pos (3UL)                                   /*!< PAR_EN (Bit 3)                                        */
+#define UART_LCR_PAR_EN_Msk (0x8UL)                                 /*!< PAR_EN (Bitfield-Mask: 0x01)                          */
+#define UART_LCR_PAR_MOD_Pos (4UL)                                  /*!< PAR_MOD (Bit 4)                                       */
+#define UART_LCR_PAR_MOD_Msk (0x30UL)                               /*!< PAR_MOD (Bitfield-Mask: 0x03)                         */
+#define UART_LCR_BREAK_EN_Pos (6UL)                                 /*!< BREAK_EN (Bit 6)                                      */
+#define UART_LCR_BREAK_EN_Msk (0x40UL)                              /*!< BREAK_EN (Bitfield-Mask: 0x01)                        */
+#define UART_LCR_GP_BIT__RB_LCR_DLAB_Pos (7UL)                      /*!< GP_BIT__RB_LCR_DLAB (Bit 7)                           */
+#define UART_LCR_GP_BIT__RB_LCR_DLAB_Msk (0x80UL)                   /*!< GP_BIT__RB_LCR_DLAB (Bitfield-Mask: 0x01)             */
+/* =======================================================  UART_IIR  ======================================================== */
+#define UART_IIR_NO_INT_Pos (0UL)                                   /*!< NO_INT (Bit 0)                                        */
+#define UART_IIR_NO_INT_Msk (0x1UL)                                 /*!< NO_INT (Bitfield-Mask: 0x01)                          */
+#define UART_IIR_INT_MASK_Pos (1UL)                                 /*!< INT_MASK (Bit 1)                                      */
+#define UART_IIR_INT_MASK_Msk (0xeUL)                               /*!< INT_MASK (Bitfield-Mask: 0x07)                        */
+#define UART_IIR_FIFO_ID_Pos (7UL)                                  /*!< FIFO_ID (Bit 7)                                       */
+#define UART_IIR_FIFO_ID_Msk (0x80UL)                               /*!< FIFO_ID (Bitfield-Mask: 0x01)                         */
+/* =======================================================  UART_LSR  ======================================================== */
+#define UART_LSR_DATA_RDY_Pos (0UL)                                 /*!< DATA_RDY (Bit 0)                                      */
+#define UART_LSR_DATA_RDY_Msk (0x1UL)                               /*!< DATA_RDY (Bitfield-Mask: 0x01)                        */
+#define UART_LSR_OVER_ERR_Pos (1UL)                                 /*!< OVER_ERR (Bit 1)                                      */
+#define UART_LSR_OVER_ERR_Msk (0x2UL)                               /*!< OVER_ERR (Bitfield-Mask: 0x01)                        */
+#define UART_LSR_PAR_ERR_Pos (2UL)                                  /*!< PAR_ERR (Bit 2)                                       */
+#define UART_LSR_PAR_ERR_Msk (0x4UL)                                /*!< PAR_ERR (Bitfield-Mask: 0x01)                         */
+#define UART_LSR_FRAME_ERR_Pos (3UL)                                /*!< FRAME_ERR (Bit 3)                                     */
+#define UART_LSR_FRAME_ERR_Msk (0x8UL)                              /*!< FRAME_ERR (Bitfield-Mask: 0x01)                       */
+#define UART_LSR_BREAK_ERR_Pos (4UL)                                /*!< BREAK_ERR (Bit 4)                                     */
+#define UART_LSR_BREAK_ERR_Msk (0x10UL)                             /*!< BREAK_ERR (Bitfield-Mask: 0x01)                       */
+#define UART_LSR_TX_FIFO_EMP_Pos (5UL)                              /*!< TX_FIFO_EMP (Bit 5)                                   */
+#define UART_LSR_TX_FIFO_EMP_Msk (0x20UL)                           /*!< TX_FIFO_EMP (Bitfield-Mask: 0x01)                     */
+#define UART_LSR_TX_ALL_EMP_Pos (6UL)                               /*!< TX_ALL_EMP (Bit 6)                                    */
+#define UART_LSR_TX_ALL_EMP_Msk (0x40UL)                            /*!< TX_ALL_EMP (Bitfield-Mask: 0x01)                      */
+#define UART_LSR_ERR_RX_FIFO_Pos (7UL)                              /*!< ERR_RX_FIFO (Bit 7)                                   */
+#define UART_LSR_ERR_RX_FIFO_Msk (0x80UL)                           /*!< ERR_RX_FIFO (Bitfield-Mask: 0x01)                     */
 /* =====================================================  R8_UART0_MSR  ====================================================== */
-#define UART0_R8_UART0_MSR_RB_MSR_CTS_CHG_Pos (0UL)                 /*!< RB_MSR_CTS_CHG (Bit 0)                                */
-#define UART0_R8_UART0_MSR_RB_MSR_CTS_CHG_Msk (0x1UL)               /*!< RB_MSR_CTS_CHG (Bitfield-Mask: 0x01)                  */
-#define UART0_R8_UART0_MSR_RB_MSR_DSR_CHG_Pos (1UL)                 /*!< RB_MSR_DSR_CHG (Bit 1)                                */
-#define UART0_R8_UART0_MSR_RB_MSR_DSR_CHG_Msk (0x2UL)               /*!< RB_MSR_DSR_CHG (Bitfield-Mask: 0x01)                  */
-#define UART0_R8_UART0_MSR_RB_MSR_RI_CHG_Pos (2UL)                  /*!< RB_MSR_RI_CHG (Bit 2)                                 */
-#define UART0_R8_UART0_MSR_RB_MSR_RI_CHG_Msk (0x4UL)                /*!< RB_MSR_RI_CHG (Bitfield-Mask: 0x01)                   */
-#define UART0_R8_UART0_MSR_RB_MSR_DCD_CHG_Pos (3UL)                 /*!< RB_MSR_DCD_CHG (Bit 3)                                */
-#define UART0_R8_UART0_MSR_RB_MSR_DCD_CHG_Msk (0x8UL)               /*!< RB_MSR_DCD_CHG (Bitfield-Mask: 0x01)                  */
-#define UART0_R8_UART0_MSR_RB_MSR_CTS_Pos (4UL)                     /*!< RB_MSR_CTS (Bit 4)                                    */
-#define UART0_R8_UART0_MSR_RB_MSR_CTS_Msk (0x10UL)                  /*!< RB_MSR_CTS (Bitfield-Mask: 0x01)                      */
-#define UART0_R8_UART0_MSR_RB_MSR_DSR_Pos (5UL)                     /*!< RB_MSR_DSR (Bit 5)                                    */
-#define UART0_R8_UART0_MSR_RB_MSR_DSR_Msk (0x20UL)                  /*!< RB_MSR_DSR (Bitfield-Mask: 0x01)                      */
-#define UART0_R8_UART0_MSR_RB_MSR_RI_Pos  (6UL)                     /*!< RB_MSR_RI (Bit 6)                                     */
-#define UART0_R8_UART0_MSR_RB_MSR_RI_Msk  (0x40UL)                  /*!< RB_MSR_RI (Bitfield-Mask: 0x01)                       */
-#define UART0_R8_UART0_MSR_RB_MSR_DCD_Pos (7UL)                     /*!< RB_MSR_DCD (Bit 7)                                    */
-#define UART0_R8_UART0_MSR_RB_MSR_DCD_Msk (0x80UL)                  /*!< RB_MSR_DCD (Bitfield-Mask: 0x01)                      */
-/* =====================================================  R8_UART0_RBR  ====================================================== */
-/* =====================================================  R8_UART0_THR  ====================================================== */
-/* =====================================================  R8_UART0_RFC  ====================================================== */
-/* =====================================================  R8_UART0_TFC  ====================================================== */
-/* =====================================================  R16_UART0_DL  ====================================================== */
-/* =====================================================  R8_UART0_DIV  ====================================================== */
-/* =====================================================  R8_UART0_ADR  ====================================================== */
-
-
-/* =========================================================================================================================== */
-/* ================                                           UART1                                           ================ */
-/* =========================================================================================================================== */
-
-/* =====================================================  R8_UART1_MCR  ====================================================== */
-#define UART1_R8_UART1_MCR_RB_MCR_OUT2_Pos (3UL)                    /*!< RB_MCR_OUT2 (Bit 3)                                   */
-#define UART1_R8_UART1_MCR_RB_MCR_OUT2_Msk (0x8UL)                  /*!< RB_MCR_OUT2 (Bitfield-Mask: 0x01)                     */
-/* =====================================================  R8_UART1_IER  ====================================================== */
-#define UART1_R8_UART1_IER_RB_IER_RECV_RDY_Pos (0UL)                /*!< RB_IER_RECV_RDY (Bit 0)                               */
-#define UART1_R8_UART1_IER_RB_IER_RECV_RDY_Msk (0x1UL)              /*!< RB_IER_RECV_RDY (Bitfield-Mask: 0x01)                 */
-#define UART1_R8_UART1_IER_RB_IER_THR_EMPTY_Pos (1UL)               /*!< RB_IER_THR_EMPTY (Bit 1)                              */
-#define UART1_R8_UART1_IER_RB_IER_THR_EMPTY_Msk (0x2UL)             /*!< RB_IER_THR_EMPTY (Bitfield-Mask: 0x01)                */
-#define UART1_R8_UART1_IER_RB_IER_LINE_STAT_Pos (2UL)               /*!< RB_IER_LINE_STAT (Bit 2)                              */
-#define UART1_R8_UART1_IER_RB_IER_LINE_STAT_Msk (0x4UL)             /*!< RB_IER_LINE_STAT (Bitfield-Mask: 0x01)                */
-#define UART1_R8_UART1_IER_RB_IER_TXD_EN_Pos (6UL)                  /*!< RB_IER_TXD_EN (Bit 6)                                 */
-#define UART1_R8_UART1_IER_RB_IER_TXD_EN_Msk (0x40UL)               /*!< RB_IER_TXD_EN (Bitfield-Mask: 0x01)                   */
-#define UART1_R8_UART1_IER_RB_IER_RESET_Pos (7UL)                   /*!< RB_IER_RESET (Bit 7)                                  */
-#define UART1_R8_UART1_IER_RB_IER_RESET_Msk (0x80UL)                /*!< RB_IER_RESET (Bitfield-Mask: 0x01)                    */
-/* =====================================================  R8_UART1_FCR  ====================================================== */
-#define UART1_R8_UART1_FCR_RB_FCR_FIFO_EN_Pos (0UL)                 /*!< RB_FCR_FIFO_EN (Bit 0)                                */
-#define UART1_R8_UART1_FCR_RB_FCR_FIFO_EN_Msk (0x1UL)               /*!< RB_FCR_FIFO_EN (Bitfield-Mask: 0x01)                  */
-#define UART1_R8_UART1_FCR_RB_FCR_RX_FIFO_CLR_Pos (1UL)             /*!< RB_FCR_RX_FIFO_CLR (Bit 1)                            */
-#define UART1_R8_UART1_FCR_RB_FCR_RX_FIFO_CLR_Msk (0x2UL)           /*!< RB_FCR_RX_FIFO_CLR (Bitfield-Mask: 0x01)              */
-#define UART1_R8_UART1_FCR_RB_FCR_TX_FIFO_CLR_Pos (2UL)             /*!< RB_FCR_TX_FIFO_CLR (Bit 2)                            */
-#define UART1_R8_UART1_FCR_RB_FCR_TX_FIFO_CLR_Msk (0x4UL)           /*!< RB_FCR_TX_FIFO_CLR (Bitfield-Mask: 0x01)              */
-#define UART1_R8_UART1_FCR_RB_FCR_FIFO_TRIG_Pos (6UL)               /*!< RB_FCR_FIFO_TRIG (Bit 6)                              */
-#define UART1_R8_UART1_FCR_RB_FCR_FIFO_TRIG_Msk (0xc0UL)            /*!< RB_FCR_FIFO_TRIG (Bitfield-Mask: 0x03)                */
-/* =====================================================  R8_UART1_LCR  ====================================================== */
-#define UART1_R8_UART1_LCR_RB_LCR_WORD_SZ_Pos (0UL)                 /*!< RB_LCR_WORD_SZ (Bit 0)                                */
-#define UART1_R8_UART1_LCR_RB_LCR_WORD_SZ_Msk (0x3UL)               /*!< RB_LCR_WORD_SZ (Bitfield-Mask: 0x03)                  */
-#define UART1_R8_UART1_LCR_RB_LCR_STOP_BIT_Pos (2UL)                /*!< RB_LCR_STOP_BIT (Bit 2)                               */
-#define UART1_R8_UART1_LCR_RB_LCR_STOP_BIT_Msk (0x4UL)              /*!< RB_LCR_STOP_BIT (Bitfield-Mask: 0x01)                 */
-#define UART1_R8_UART1_LCR_RB_LCR_PAR_EN_Pos (3UL)                  /*!< RB_LCR_PAR_EN (Bit 3)                                 */
-#define UART1_R8_UART1_LCR_RB_LCR_PAR_EN_Msk (0x8UL)                /*!< RB_LCR_PAR_EN (Bitfield-Mask: 0x01)                   */
-#define UART1_R8_UART1_LCR_RB_LCR_PAR_MOD_Pos (4UL)                 /*!< RB_LCR_PAR_MOD (Bit 4)                                */
-#define UART1_R8_UART1_LCR_RB_LCR_PAR_MOD_Msk (0x30UL)              /*!< RB_LCR_PAR_MOD (Bitfield-Mask: 0x03)                  */
-#define UART1_R8_UART1_LCR_RB_LCR_BREAK_EN_Pos (6UL)                /*!< RB_LCR_BREAK_EN (Bit 6)                               */
-#define UART1_R8_UART1_LCR_RB_LCR_BREAK_EN_Msk (0x40UL)             /*!< RB_LCR_BREAK_EN (Bitfield-Mask: 0x01)                 */
-#define UART1_R8_UART1_LCR_RB_LCR_GP_BIT__RB_LCR_DLAB_Pos (7UL)     /*!< RB_LCR_GP_BIT__RB_LCR_DLAB (Bit 7)                    */
-#define UART1_R8_UART1_LCR_RB_LCR_GP_BIT__RB_LCR_DLAB_Msk (0x80UL)  /*!< RB_LCR_GP_BIT__RB_LCR_DLAB (Bitfield-Mask: 0x01)      */
-/* =====================================================  R8_UART1_IIR  ====================================================== */
-#define UART1_R8_UART1_IIR_RB_IIR_NO_INT_Pos (0UL)                  /*!< RB_IIR_NO_INT (Bit 0)                                 */
-#define UART1_R8_UART1_IIR_RB_IIR_NO_INT_Msk (0x1UL)                /*!< RB_IIR_NO_INT (Bitfield-Mask: 0x01)                   */
-#define UART1_R8_UART1_IIR_RB_IIR_INT_MASK_Pos (1UL)                /*!< RB_IIR_INT_MASK (Bit 1)                               */
-#define UART1_R8_UART1_IIR_RB_IIR_INT_MASK_Msk (0xeUL)              /*!< RB_IIR_INT_MASK (Bitfield-Mask: 0x07)                 */
-#define UART1_R8_UART1_IIR_RB_IIR_FIFO_ID_Pos (7UL)                 /*!< RB_IIR_FIFO_ID (Bit 7)                                */
-#define UART1_R8_UART1_IIR_RB_IIR_FIFO_ID_Msk (0x80UL)              /*!< RB_IIR_FIFO_ID (Bitfield-Mask: 0x01)                  */
-/* =====================================================  R8_UART1_LSR  ====================================================== */
-#define UART1_R8_UART1_LSR_RB_LSR_DATA_RDY_Pos (0UL)                /*!< RB_LSR_DATA_RDY (Bit 0)                               */
-#define UART1_R8_UART1_LSR_RB_LSR_DATA_RDY_Msk (0x1UL)              /*!< RB_LSR_DATA_RDY (Bitfield-Mask: 0x01)                 */
-#define UART1_R8_UART1_LSR_RB_LSR_OVER_ERR_Pos (1UL)                /*!< RB_LSR_OVER_ERR (Bit 1)                               */
-#define UART1_R8_UART1_LSR_RB_LSR_OVER_ERR_Msk (0x2UL)              /*!< RB_LSR_OVER_ERR (Bitfield-Mask: 0x01)                 */
-#define UART1_R8_UART1_LSR_RB_LSR_PAR_ERR_Pos (2UL)                 /*!< RB_LSR_PAR_ERR (Bit 2)                                */
-#define UART1_R8_UART1_LSR_RB_LSR_PAR_ERR_Msk (0x4UL)               /*!< RB_LSR_PAR_ERR (Bitfield-Mask: 0x01)                  */
-#define UART1_R8_UART1_LSR_RB_LSR_FRAME_ERR_Pos (3UL)               /*!< RB_LSR_FRAME_ERR (Bit 3)                              */
-#define UART1_R8_UART1_LSR_RB_LSR_FRAME_ERR_Msk (0x8UL)             /*!< RB_LSR_FRAME_ERR (Bitfield-Mask: 0x01)                */
-#define UART1_R8_UART1_LSR_RB_LSR_BREAK_ERR_Pos (4UL)               /*!< RB_LSR_BREAK_ERR (Bit 4)                              */
-#define UART1_R8_UART1_LSR_RB_LSR_BREAK_ERR_Msk (0x10UL)            /*!< RB_LSR_BREAK_ERR (Bitfield-Mask: 0x01)                */
-#define UART1_R8_UART1_LSR_RB_LSR_TX_FIFO_EMP_Pos (5UL)             /*!< RB_LSR_TX_FIFO_EMP (Bit 5)                            */
-#define UART1_R8_UART1_LSR_RB_LSR_TX_FIFO_EMP_Msk (0x20UL)          /*!< RB_LSR_TX_FIFO_EMP (Bitfield-Mask: 0x01)              */
-#define UART1_R8_UART1_LSR_RB_LSR_TX_ALL_EMP_Pos (6UL)              /*!< RB_LSR_TX_ALL_EMP (Bit 6)                             */
-#define UART1_R8_UART1_LSR_RB_LSR_TX_ALL_EMP_Msk (0x40UL)           /*!< RB_LSR_TX_ALL_EMP (Bitfield-Mask: 0x01)               */
-#define UART1_R8_UART1_LSR_RB_LSR_ERR_RX_FIFO_Pos (7UL)             /*!< RB_LSR_ERR_RX_FIFO (Bit 7)                            */
-#define UART1_R8_UART1_LSR_RB_LSR_ERR_RX_FIFO_Msk (0x80UL)          /*!< RB_LSR_ERR_RX_FIFO (Bitfield-Mask: 0x01)              */
-/* =====================================================  R8_UART1_RBR  ====================================================== */
-/* =====================================================  R8_UART1_THR  ====================================================== */
-/* =====================================================  R8_UART1_RFC  ====================================================== */
-/* =====================================================  R8_UART1_TFC  ====================================================== */
-/* =====================================================  R16_UART1_DL  ====================================================== */
-/* =====================================================  R8_UART1_DIV  ====================================================== */
-
-
-/* =========================================================================================================================== */
-/* ================                                           UART2                                           ================ */
-/* =========================================================================================================================== */
-
-/* =====================================================  R8_UART2_MCR  ====================================================== */
-#define UART2_R8_UART2_MCR_RB_MCR_OUT2_Pos (3UL)                    /*!< RB_MCR_OUT2 (Bit 3)                                   */
-#define UART2_R8_UART2_MCR_RB_MCR_OUT2_Msk (0x8UL)                  /*!< RB_MCR_OUT2 (Bitfield-Mask: 0x01)                     */
-/* =====================================================  R8_UART2_IER  ====================================================== */
-#define UART2_R8_UART2_IER_RB_IER_RECV_RDY_Pos (0UL)                /*!< RB_IER_RECV_RDY (Bit 0)                               */
-#define UART2_R8_UART2_IER_RB_IER_RECV_RDY_Msk (0x1UL)              /*!< RB_IER_RECV_RDY (Bitfield-Mask: 0x01)                 */
-#define UART2_R8_UART2_IER_RB_IER_THR_EMPTY_Pos (1UL)               /*!< RB_IER_THR_EMPTY (Bit 1)                              */
-#define UART2_R8_UART2_IER_RB_IER_THR_EMPTY_Msk (0x2UL)             /*!< RB_IER_THR_EMPTY (Bitfield-Mask: 0x01)                */
-#define UART2_R8_UART2_IER_RB_IER_LINE_STAT_Pos (2UL)               /*!< RB_IER_LINE_STAT (Bit 2)                              */
-#define UART2_R8_UART2_IER_RB_IER_LINE_STAT_Msk (0x4UL)             /*!< RB_IER_LINE_STAT (Bitfield-Mask: 0x01)                */
-#define UART2_R8_UART2_IER_RB_IER_TXD_EN_Pos (6UL)                  /*!< RB_IER_TXD_EN (Bit 6)                                 */
-#define UART2_R8_UART2_IER_RB_IER_TXD_EN_Msk (0x40UL)               /*!< RB_IER_TXD_EN (Bitfield-Mask: 0x01)                   */
-#define UART2_R8_UART2_IER_RB_IER_RESET_Pos (7UL)                   /*!< RB_IER_RESET (Bit 7)                                  */
-#define UART2_R8_UART2_IER_RB_IER_RESET_Msk (0x80UL)                /*!< RB_IER_RESET (Bitfield-Mask: 0x01)                    */
-/* =====================================================  R8_UART2_FCR  ====================================================== */
-#define UART2_R8_UART2_FCR_RB_FCR_FIFO_EN_Pos (0UL)                 /*!< RB_FCR_FIFO_EN (Bit 0)                                */
-#define UART2_R8_UART2_FCR_RB_FCR_FIFO_EN_Msk (0x1UL)               /*!< RB_FCR_FIFO_EN (Bitfield-Mask: 0x01)                  */
-#define UART2_R8_UART2_FCR_RB_FCR_RX_FIFO_CLR_Pos (1UL)             /*!< RB_FCR_RX_FIFO_CLR (Bit 1)                            */
-#define UART2_R8_UART2_FCR_RB_FCR_RX_FIFO_CLR_Msk (0x2UL)           /*!< RB_FCR_RX_FIFO_CLR (Bitfield-Mask: 0x01)              */
-#define UART2_R8_UART2_FCR_RB_FCR_TX_FIFO_CLR_Pos (2UL)             /*!< RB_FCR_TX_FIFO_CLR (Bit 2)                            */
-#define UART2_R8_UART2_FCR_RB_FCR_TX_FIFO_CLR_Msk (0x4UL)           /*!< RB_FCR_TX_FIFO_CLR (Bitfield-Mask: 0x01)              */
-#define UART2_R8_UART2_FCR_RB_FCR_FIFO_TRIG_Pos (6UL)               /*!< RB_FCR_FIFO_TRIG (Bit 6)                              */
-#define UART2_R8_UART2_FCR_RB_FCR_FIFO_TRIG_Msk (0xc0UL)            /*!< RB_FCR_FIFO_TRIG (Bitfield-Mask: 0x03)                */
-/* =====================================================  R8_UART2_LCR  ====================================================== */
-#define UART2_R8_UART2_LCR_RB_LCR_WORD_SZ_Pos (0UL)                 /*!< RB_LCR_WORD_SZ (Bit 0)                                */
-#define UART2_R8_UART2_LCR_RB_LCR_WORD_SZ_Msk (0x3UL)               /*!< RB_LCR_WORD_SZ (Bitfield-Mask: 0x03)                  */
-#define UART2_R8_UART2_LCR_RB_LCR_STOP_BIT_Pos (2UL)                /*!< RB_LCR_STOP_BIT (Bit 2)                               */
-#define UART2_R8_UART2_LCR_RB_LCR_STOP_BIT_Msk (0x4UL)              /*!< RB_LCR_STOP_BIT (Bitfield-Mask: 0x01)                 */
-#define UART2_R8_UART2_LCR_RB_LCR_PAR_EN_Pos (3UL)                  /*!< RB_LCR_PAR_EN (Bit 3)                                 */
-#define UART2_R8_UART2_LCR_RB_LCR_PAR_EN_Msk (0x8UL)                /*!< RB_LCR_PAR_EN (Bitfield-Mask: 0x01)                   */
-#define UART2_R8_UART2_LCR_RB_LCR_PAR_MOD_Pos (4UL)                 /*!< RB_LCR_PAR_MOD (Bit 4)                                */
-#define UART2_R8_UART2_LCR_RB_LCR_PAR_MOD_Msk (0x30UL)              /*!< RB_LCR_PAR_MOD (Bitfield-Mask: 0x03)                  */
-#define UART2_R8_UART2_LCR_RB_LCR_BREAK_EN_Pos (6UL)                /*!< RB_LCR_BREAK_EN (Bit 6)                               */
-#define UART2_R8_UART2_LCR_RB_LCR_BREAK_EN_Msk (0x40UL)             /*!< RB_LCR_BREAK_EN (Bitfield-Mask: 0x01)                 */
-#define UART2_R8_UART2_LCR_RB_LCR_GP_BIT__RB_LCR_DLAB_Pos (7UL)     /*!< RB_LCR_GP_BIT__RB_LCR_DLAB (Bit 7)                    */
-#define UART2_R8_UART2_LCR_RB_LCR_GP_BIT__RB_LCR_DLAB_Msk (0x80UL)  /*!< RB_LCR_GP_BIT__RB_LCR_DLAB (Bitfield-Mask: 0x01)      */
-/* =====================================================  R8_UART2_IIR  ====================================================== */
-#define UART2_R8_UART2_IIR_RB_IIR_NO_INT_Pos (0UL)                  /*!< RB_IIR_NO_INT (Bit 0)                                 */
-#define UART2_R8_UART2_IIR_RB_IIR_NO_INT_Msk (0x1UL)                /*!< RB_IIR_NO_INT (Bitfield-Mask: 0x01)                   */
-#define UART2_R8_UART2_IIR_RB_IIR_INT_MASK_Pos (1UL)                /*!< RB_IIR_INT_MASK (Bit 1)                               */
-#define UART2_R8_UART2_IIR_RB_IIR_INT_MASK_Msk (0xeUL)              /*!< RB_IIR_INT_MASK (Bitfield-Mask: 0x07)                 */
-#define UART2_R8_UART2_IIR_RB_IIR_FIFO_ID_Pos (7UL)                 /*!< RB_IIR_FIFO_ID (Bit 7)                                */
-#define UART2_R8_UART2_IIR_RB_IIR_FIFO_ID_Msk (0x80UL)              /*!< RB_IIR_FIFO_ID (Bitfield-Mask: 0x01)                  */
-/* =====================================================  R8_UART2_LSR  ====================================================== */
-#define UART2_R8_UART2_LSR_RB_LSR_DATA_RDY_Pos (0UL)                /*!< RB_LSR_DATA_RDY (Bit 0)                               */
-#define UART2_R8_UART2_LSR_RB_LSR_DATA_RDY_Msk (0x1UL)              /*!< RB_LSR_DATA_RDY (Bitfield-Mask: 0x01)                 */
-#define UART2_R8_UART2_LSR_RB_LSR_OVER_ERR_Pos (1UL)                /*!< RB_LSR_OVER_ERR (Bit 1)                               */
-#define UART2_R8_UART2_LSR_RB_LSR_OVER_ERR_Msk (0x2UL)              /*!< RB_LSR_OVER_ERR (Bitfield-Mask: 0x01)                 */
-#define UART2_R8_UART2_LSR_RB_LSR_PAR_ERR_Pos (2UL)                 /*!< RB_LSR_PAR_ERR (Bit 2)                                */
-#define UART2_R8_UART2_LSR_RB_LSR_PAR_ERR_Msk (0x4UL)               /*!< RB_LSR_PAR_ERR (Bitfield-Mask: 0x01)                  */
-#define UART2_R8_UART2_LSR_RB_LSR_FRAME_ERR_Pos (3UL)               /*!< RB_LSR_FRAME_ERR (Bit 3)                              */
-#define UART2_R8_UART2_LSR_RB_LSR_FRAME_ERR_Msk (0x8UL)             /*!< RB_LSR_FRAME_ERR (Bitfield-Mask: 0x01)                */
-#define UART2_R8_UART2_LSR_RB_LSR_BREAK_ERR_Pos (4UL)               /*!< RB_LSR_BREAK_ERR (Bit 4)                              */
-#define UART2_R8_UART2_LSR_RB_LSR_BREAK_ERR_Msk (0x10UL)            /*!< RB_LSR_BREAK_ERR (Bitfield-Mask: 0x01)                */
-#define UART2_R8_UART2_LSR_RB_LSR_TX_FIFO_EMP_Pos (5UL)             /*!< RB_LSR_TX_FIFO_EMP (Bit 5)                            */
-#define UART2_R8_UART2_LSR_RB_LSR_TX_FIFO_EMP_Msk (0x20UL)          /*!< RB_LSR_TX_FIFO_EMP (Bitfield-Mask: 0x01)              */
-#define UART2_R8_UART2_LSR_RB_LSR_TX_ALL_EMP_Pos (6UL)              /*!< RB_LSR_TX_ALL_EMP (Bit 6)                             */
-#define UART2_R8_UART2_LSR_RB_LSR_TX_ALL_EMP_Msk (0x40UL)           /*!< RB_LSR_TX_ALL_EMP (Bitfield-Mask: 0x01)               */
-#define UART2_R8_UART2_LSR_RB_LSR_ERR_RX_FIFO_Pos (7UL)             /*!< RB_LSR_ERR_RX_FIFO (Bit 7)                            */
-#define UART2_R8_UART2_LSR_RB_LSR_ERR_RX_FIFO_Msk (0x80UL)          /*!< RB_LSR_ERR_RX_FIFO (Bitfield-Mask: 0x01)              */
-/* =====================================================  R8_UART2_RBR  ====================================================== */
-/* =====================================================  R8_UART2_THR  ====================================================== */
-/* =====================================================  R8_UART2_RFC  ====================================================== */
-/* =====================================================  R8_UART2_TFC  ====================================================== */
-/* =====================================================  R16_UART2_DL  ====================================================== */
-/* =====================================================  R8_UART2_DIV  ====================================================== */
-
-
-/* =========================================================================================================================== */
-/* ================                                           UART3                                           ================ */
-/* =========================================================================================================================== */
-
-/* =====================================================  R8_UART3_MCR  ====================================================== */
-#define UART3_R8_UART3_MCR_RB_MCR_OUT2_Pos (3UL)                    /*!< RB_MCR_OUT2 (Bit 3)                                   */
-#define UART3_R8_UART3_MCR_RB_MCR_OUT2_Msk (0x8UL)                  /*!< RB_MCR_OUT2 (Bitfield-Mask: 0x01)                     */
-/* =====================================================  R8_UART3_IER  ====================================================== */
-#define UART3_R8_UART3_IER_RB_IER_RECV_RDY_Pos (0UL)                /*!< RB_IER_RECV_RDY (Bit 0)                               */
-#define UART3_R8_UART3_IER_RB_IER_RECV_RDY_Msk (0x1UL)              /*!< RB_IER_RECV_RDY (Bitfield-Mask: 0x01)                 */
-#define UART3_R8_UART3_IER_RB_IER_THR_EMPTY_Pos (1UL)               /*!< RB_IER_THR_EMPTY (Bit 1)                              */
-#define UART3_R8_UART3_IER_RB_IER_THR_EMPTY_Msk (0x2UL)             /*!< RB_IER_THR_EMPTY (Bitfield-Mask: 0x01)                */
-#define UART3_R8_UART3_IER_RB_IER_LINE_STAT_Pos (2UL)               /*!< RB_IER_LINE_STAT (Bit 2)                              */
-#define UART3_R8_UART3_IER_RB_IER_LINE_STAT_Msk (0x4UL)             /*!< RB_IER_LINE_STAT (Bitfield-Mask: 0x01)                */
-#define UART3_R8_UART3_IER_RB_IER_TXD_EN_Pos (6UL)                  /*!< RB_IER_TXD_EN (Bit 6)                                 */
-#define UART3_R8_UART3_IER_RB_IER_TXD_EN_Msk (0x40UL)               /*!< RB_IER_TXD_EN (Bitfield-Mask: 0x01)                   */
-#define UART3_R8_UART3_IER_RB_IER_RESET_Pos (7UL)                   /*!< RB_IER_RESET (Bit 7)                                  */
-#define UART3_R8_UART3_IER_RB_IER_RESET_Msk (0x80UL)                /*!< RB_IER_RESET (Bitfield-Mask: 0x01)                    */
-/* =====================================================  R8_UART3_FCR  ====================================================== */
-#define UART3_R8_UART3_FCR_RB_FCR_FIFO_EN_Pos (0UL)                 /*!< RB_FCR_FIFO_EN (Bit 0)                                */
-#define UART3_R8_UART3_FCR_RB_FCR_FIFO_EN_Msk (0x1UL)               /*!< RB_FCR_FIFO_EN (Bitfield-Mask: 0x01)                  */
-#define UART3_R8_UART3_FCR_RB_FCR_RX_FIFO_CLR_Pos (1UL)             /*!< RB_FCR_RX_FIFO_CLR (Bit 1)                            */
-#define UART3_R8_UART3_FCR_RB_FCR_RX_FIFO_CLR_Msk (0x2UL)           /*!< RB_FCR_RX_FIFO_CLR (Bitfield-Mask: 0x01)              */
-#define UART3_R8_UART3_FCR_RB_FCR_TX_FIFO_CLR_Pos (2UL)             /*!< RB_FCR_TX_FIFO_CLR (Bit 2)                            */
-#define UART3_R8_UART3_FCR_RB_FCR_TX_FIFO_CLR_Msk (0x4UL)           /*!< RB_FCR_TX_FIFO_CLR (Bitfield-Mask: 0x01)              */
-#define UART3_R8_UART3_FCR_RB_FCR_FIFO_TRIG_Pos (6UL)               /*!< RB_FCR_FIFO_TRIG (Bit 6)                              */
-#define UART3_R8_UART3_FCR_RB_FCR_FIFO_TRIG_Msk (0xc0UL)            /*!< RB_FCR_FIFO_TRIG (Bitfield-Mask: 0x03)                */
-/* =====================================================  R8_UART3_LCR  ====================================================== */
-#define UART3_R8_UART3_LCR_RB_LCR_WORD_SZ_Pos (0UL)                 /*!< RB_LCR_WORD_SZ (Bit 0)                                */
-#define UART3_R8_UART3_LCR_RB_LCR_WORD_SZ_Msk (0x3UL)               /*!< RB_LCR_WORD_SZ (Bitfield-Mask: 0x03)                  */
-#define UART3_R8_UART3_LCR_RB_LCR_STOP_BIT_Pos (2UL)                /*!< RB_LCR_STOP_BIT (Bit 2)                               */
-#define UART3_R8_UART3_LCR_RB_LCR_STOP_BIT_Msk (0x4UL)              /*!< RB_LCR_STOP_BIT (Bitfield-Mask: 0x01)                 */
-#define UART3_R8_UART3_LCR_RB_LCR_PAR_EN_Pos (3UL)                  /*!< RB_LCR_PAR_EN (Bit 3)                                 */
-#define UART3_R8_UART3_LCR_RB_LCR_PAR_EN_Msk (0x8UL)                /*!< RB_LCR_PAR_EN (Bitfield-Mask: 0x01)                   */
-#define UART3_R8_UART3_LCR_RB_LCR_PAR_MOD_Pos (4UL)                 /*!< RB_LCR_PAR_MOD (Bit 4)                                */
-#define UART3_R8_UART3_LCR_RB_LCR_PAR_MOD_Msk (0x30UL)              /*!< RB_LCR_PAR_MOD (Bitfield-Mask: 0x03)                  */
-#define UART3_R8_UART3_LCR_RB_LCR_BREAK_EN_Pos (6UL)                /*!< RB_LCR_BREAK_EN (Bit 6)                               */
-#define UART3_R8_UART3_LCR_RB_LCR_BREAK_EN_Msk (0x40UL)             /*!< RB_LCR_BREAK_EN (Bitfield-Mask: 0x01)                 */
-#define UART3_R8_UART3_LCR_RB_LCR_GP_BIT__RB_LCR_DLAB_Pos (7UL)     /*!< RB_LCR_GP_BIT__RB_LCR_DLAB (Bit 7)                    */
-#define UART3_R8_UART3_LCR_RB_LCR_GP_BIT__RB_LCR_DLAB_Msk (0x80UL)  /*!< RB_LCR_GP_BIT__RB_LCR_DLAB (Bitfield-Mask: 0x01)      */
-/* =====================================================  R8_UART3_IIR  ====================================================== */
-#define UART3_R8_UART3_IIR_RB_IIR_NO_INT_Pos (0UL)                  /*!< RB_IIR_NO_INT (Bit 0)                                 */
-#define UART3_R8_UART3_IIR_RB_IIR_NO_INT_Msk (0x1UL)                /*!< RB_IIR_NO_INT (Bitfield-Mask: 0x01)                   */
-#define UART3_R8_UART3_IIR_RB_IIR_INT_MASK_Pos (1UL)                /*!< RB_IIR_INT_MASK (Bit 1)                               */
-#define UART3_R8_UART3_IIR_RB_IIR_INT_MASK_Msk (0xeUL)              /*!< RB_IIR_INT_MASK (Bitfield-Mask: 0x07)                 */
-#define UART3_R8_UART3_IIR_RB_IIR_FIFO_ID_Pos (7UL)                 /*!< RB_IIR_FIFO_ID (Bit 7)                                */
-#define UART3_R8_UART3_IIR_RB_IIR_FIFO_ID_Msk (0x80UL)              /*!< RB_IIR_FIFO_ID (Bitfield-Mask: 0x01)                  */
-/* =====================================================  R8_UART3_LSR  ====================================================== */
-#define UART3_R8_UART3_LSR_RB_LSR_DATA_RDY_Pos (0UL)                /*!< RB_LSR_DATA_RDY (Bit 0)                               */
-#define UART3_R8_UART3_LSR_RB_LSR_DATA_RDY_Msk (0x1UL)              /*!< RB_LSR_DATA_RDY (Bitfield-Mask: 0x01)                 */
-#define UART3_R8_UART3_LSR_RB_LSR_OVER_ERR_Pos (1UL)                /*!< RB_LSR_OVER_ERR (Bit 1)                               */
-#define UART3_R8_UART3_LSR_RB_LSR_OVER_ERR_Msk (0x2UL)              /*!< RB_LSR_OVER_ERR (Bitfield-Mask: 0x01)                 */
-#define UART3_R8_UART3_LSR_RB_LSR_PAR_ERR_Pos (2UL)                 /*!< RB_LSR_PAR_ERR (Bit 2)                                */
-#define UART3_R8_UART3_LSR_RB_LSR_PAR_ERR_Msk (0x4UL)               /*!< RB_LSR_PAR_ERR (Bitfield-Mask: 0x01)                  */
-#define UART3_R8_UART3_LSR_RB_LSR_FRAME_ERR_Pos (3UL)               /*!< RB_LSR_FRAME_ERR (Bit 3)                              */
-#define UART3_R8_UART3_LSR_RB_LSR_FRAME_ERR_Msk (0x8UL)             /*!< RB_LSR_FRAME_ERR (Bitfield-Mask: 0x01)                */
-#define UART3_R8_UART3_LSR_RB_LSR_BREAK_ERR_Pos (4UL)               /*!< RB_LSR_BREAK_ERR (Bit 4)                              */
-#define UART3_R8_UART3_LSR_RB_LSR_BREAK_ERR_Msk (0x10UL)            /*!< RB_LSR_BREAK_ERR (Bitfield-Mask: 0x01)                */
-#define UART3_R8_UART3_LSR_RB_LSR_TX_FIFO_EMP_Pos (5UL)             /*!< RB_LSR_TX_FIFO_EMP (Bit 5)                            */
-#define UART3_R8_UART3_LSR_RB_LSR_TX_FIFO_EMP_Msk (0x20UL)          /*!< RB_LSR_TX_FIFO_EMP (Bitfield-Mask: 0x01)              */
-#define UART3_R8_UART3_LSR_RB_LSR_TX_ALL_EMP_Pos (6UL)              /*!< RB_LSR_TX_ALL_EMP (Bit 6)                             */
-#define UART3_R8_UART3_LSR_RB_LSR_TX_ALL_EMP_Msk (0x40UL)           /*!< RB_LSR_TX_ALL_EMP (Bitfield-Mask: 0x01)               */
-#define UART3_R8_UART3_LSR_RB_LSR_ERR_RX_FIFO_Pos (7UL)             /*!< RB_LSR_ERR_RX_FIFO (Bit 7)                            */
-#define UART3_R8_UART3_LSR_RB_LSR_ERR_RX_FIFO_Msk (0x80UL)          /*!< RB_LSR_ERR_RX_FIFO (Bitfield-Mask: 0x01)              */
-/* =====================================================  R8_UART3_RBR  ====================================================== */
-/* =====================================================  R8_UART3_THR  ====================================================== */
-/* =====================================================  R8_UART3_RFC  ====================================================== */
-/* =====================================================  R8_UART3_TFC  ====================================================== */
-/* =====================================================  R16_UART3_DL  ====================================================== */
-/* =====================================================  R8_UART3_DIV  ====================================================== */
+#define UART_MSR_CTS_CHG_Pos (0UL)                                  /*!< CTS_CHG (Bit 0)                                       */
+#define UART_MSR_CTS_CHG_Msk (0x1UL)                                /*!< CTS_CHG (Bitfield-Mask: 0x01)                         */
+#define UART_MSR_DSR_CHG_Pos (1UL)                                  /*!< DSR_CHG (Bit 1)                                       */
+#define UART_MSR_DSR_CHG_Msk (0x2UL)                                /*!< DSR_CHG (Bitfield-Mask: 0x01)                         */
+#define UART_MSR_RI_CHG_Pos (2UL)                                   /*!< RI_CHG (Bit 2)                                        */
+#define UART_MSR_RI_CHG_Msk (0x4UL)                                 /*!< RI_CHG (Bitfield-Mask: 0x01)                          */
+#define UART_MSR_DCD_CHG_Pos (3UL)                                  /*!< DCD_CHG (Bit 3)                                       */
+#define UART_MSR_DCD_CHG_Msk (0x8UL)                                /*!< DCD_CHG (Bitfield-Mask: 0x01)                         */
+#define UART_MSR_CTS_Pos (4UL)                                      /*!< CTS (Bit 4)                                           */
+#define UART_MSR_CTS_Msk (0x10UL)                                   /*!< CTS (Bitfield-Mask: 0x01)                             */
+#define UART_MSR_DSR_Pos (5UL)                                      /*!< DSR (Bit 5)                                           */
+#define UART_MSR_DSR_Msk (0x20UL)                                   /*!< DSR (Bitfield-Mask: 0x01)                             */
+#define UART_MSR_RI_Pos  (6UL)                                      /*!< RI (Bit 6)                                            */
+#define UART_MSR_RI_Msk  (0x40UL)                                   /*!< RI (Bitfield-Mask: 0x01)                              */
+#define UART_MSR_DCD_Pos (7UL)                                      /*!< DCD (Bit 7)                                           */
+#define UART_MSR_DCD_Msk (0x80UL)                                   /*!< DCD (Bitfield-Mask: 0x01)                             */
+/* =======================================================  UART_RBR  ======================================================== */
+/* =======================================================  UART_THR  ======================================================== */
+/* =======================================================  UART_RFC  ======================================================== */
+/* =======================================================  UART_TFC  ======================================================== */
+/* =======================================================  UART_DL  ========================================================= */
+/* =======================================================  UART_DIV  ======================================================== */
+/* =======================================================  UART_ADR  ======================================================== */
 
 
 /* =========================================================================================================================== */
