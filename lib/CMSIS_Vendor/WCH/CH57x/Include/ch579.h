@@ -418,28 +418,21 @@ typedef struct {                                /*!< (@ 0x40004400) SPI1 Structu
 
 
 /* =========================================================================================================================== */
-/* ================                                           PWMx                                            ================ */
+/* ================                                           PWM                                            ================= */
 /* =========================================================================================================================== */
 
 
 /**
-  * @brief PWMx register (PWMx)
+  * @brief PWM register (PWM)
   */
 
 typedef struct {                                /*!< (@ 0x40005000) PWMx Structure                                             */
-  __IOM uint8_t   R8_PWM_OUT_EN;                /*!< (@ 0x00000000) RW, PWM output enable control                              */
-  __IOM uint8_t   R8_PWM_POLAR;                 /*!< (@ 0x00000001) RW, PWM output polarity control                            */
-  __IOM uint8_t   R8_PWM_CONFIG;                /*!< (@ 0x00000002) RW, PWM configuration                                      */
-  __IOM uint8_t   R8_PWM_CLOCK_DIV;             /*!< (@ 0x00000003) RW, PWM clock divisor                                      */
-  __IOM uint8_t   R8_PWM4_DATA;                 /*!< (@ 0x00000004) RW, PWM4 data holding                                      */
-  __IOM uint8_t   R8_PWM5_DATA;                 /*!< (@ 0x00000005) RW, PWM5 data holding                                      */
-  __IOM uint8_t   R8_PWM6_DATA;                 /*!< (@ 0x00000006) RW, PWM6 data holding                                      */
-  __IOM uint8_t   R8_PWM7_DATA;                 /*!< (@ 0x00000007) RW, PWM7 data holding                                      */
-  __IOM uint8_t   R8_PWM8_DATA;                 /*!< (@ 0x00000008) RW, PWM8 data holding                                      */
-  __IOM uint8_t   R8_PWM9_DATA;                 /*!< (@ 0x00000009) RW, PWM9 data holding                                      */
-  __IOM uint8_t   R8_PWM10_DATA;                /*!< (@ 0x0000000A) RW, PWM10 data holding                                     */
-  __IOM uint8_t   R8_PWM11_DATA;                /*!< (@ 0x0000000B) RW, PWM11 data holding                                     */
-} PWMx_Type;                                    /*!< Size = 12 (0xc)                                                           */
+  __IOM uint8_t   OUT_EN;                       /*!< (@ 0x00000000) RW, PWM output enable control                              */
+  __IOM uint8_t   POLAR;                        /*!< (@ 0x00000001) RW, PWM output polarity control                            */
+  __IOM uint8_t   CONFIG;                       /*!< (@ 0x00000002) RW, PWM configuration                                      */
+  __IOM uint8_t   CLOCK_DIV;                    /*!< (@ 0x00000003) RW, PWM clock divisor                                      */
+  __IOM uint8_t   DATA[8];                      /*!< (@ 0x00000004) RW, PWM data holding                                       */
+} PWM_Type;                                     /*!< Size = 12 (0xc)                                                           */
 
 
 
@@ -629,7 +622,7 @@ typedef struct {                                /*!< (@ 0x40009000) ETH Structur
 #define UART3_BASE                  0x40003C00UL
 #define SPI0_BASE                   0x40004000UL
 #define SPI1_BASE                   0x40004400UL
-#define PWMx_BASE                   0x40005000UL
+#define PWM_BASE                    0x40005000UL
 #define LCD_BASE                    0x40006000UL
 #define LED_BASE                    0x40006400UL
 #define USB_BASE                    0x40008000UL
@@ -659,7 +652,7 @@ typedef struct {                                /*!< (@ 0x40009000) ETH Structur
 #define UART3                       ((UART_Type*)              UART3_BASE)
 #define SPI0                        ((SPI0_Type*)              SPI0_BASE)
 #define SPI1                        ((SPI1_Type*)              SPI1_BASE)
-#define PWMx                        ((PWMx_Type*)              PWMx_BASE)
+#define PWM                         ((PWM_Type*)               PWM_BASE)
 #define LCD                         ((LCD_Type*)               LCD_BASE)
 #define LED                         ((LED_Type*)               LED_BASE)
 #define USB                         ((USB_Type*)               USB_BASE)
@@ -1206,7 +1199,7 @@ typedef struct {                                /*!< (@ 0x40009000) ETH Structur
 #define UART_LSR_TX_ALL_EMP_Msk (0x40UL)                            /*!< TX_ALL_EMP (Bitfield-Mask: 0x01)                      */
 #define UART_LSR_ERR_RX_FIFO_Pos (7UL)                              /*!< ERR_RX_FIFO (Bit 7)                                   */
 #define UART_LSR_ERR_RX_FIFO_Msk (0x80UL)                           /*!< ERR_RX_FIFO (Bitfield-Mask: 0x01)                     */
-/* =====================================================  R8_UART0_MSR  ====================================================== */
+/* =======================================================  UART_MSR  ======================================================== */
 #define UART_MSR_CTS_CHG_Pos (0UL)                                  /*!< CTS_CHG (Bit 0)                                       */
 #define UART_MSR_CTS_CHG_Msk (0x1UL)                                /*!< CTS_CHG (Bitfield-Mask: 0x01)                         */
 #define UART_MSR_DSR_CHG_Pos (1UL)                                  /*!< DSR_CHG (Bit 1)                                       */
@@ -1368,67 +1361,60 @@ typedef struct {                                /*!< (@ 0x40009000) ETH Structur
 
 
 /* =========================================================================================================================== */
-/* ================                                           PWMx                                            ================ */
+/* ================                                           PWM                                             ================ */
 /* =========================================================================================================================== */
 
-/* =====================================================  R8_PWM_OUT_EN  ===================================================== */
-#define PWMx_R8_PWM_OUT_EN_RB_PWM4_OUT_EN_Pos (0UL)                 /*!< RB_PWM4_OUT_EN (Bit 0)                                */
-#define PWMx_R8_PWM_OUT_EN_RB_PWM4_OUT_EN_Msk (0x1UL)               /*!< RB_PWM4_OUT_EN (Bitfield-Mask: 0x01)                  */
-#define PWMx_R8_PWM_OUT_EN_RB_PWM5_OUT_EN_Pos (1UL)                 /*!< RB_PWM5_OUT_EN (Bit 1)                                */
-#define PWMx_R8_PWM_OUT_EN_RB_PWM5_OUT_EN_Msk (0x2UL)               /*!< RB_PWM5_OUT_EN (Bitfield-Mask: 0x01)                  */
-#define PWMx_R8_PWM_OUT_EN_RB_PWM6_OUT_EN_Pos (2UL)                 /*!< RB_PWM6_OUT_EN (Bit 2)                                */
-#define PWMx_R8_PWM_OUT_EN_RB_PWM6_OUT_EN_Msk (0x4UL)               /*!< RB_PWM6_OUT_EN (Bitfield-Mask: 0x01)                  */
-#define PWMx_R8_PWM_OUT_EN_RB_PWM7_OUT_EN_Pos (3UL)                 /*!< RB_PWM7_OUT_EN (Bit 3)                                */
-#define PWMx_R8_PWM_OUT_EN_RB_PWM7_OUT_EN_Msk (0x8UL)               /*!< RB_PWM7_OUT_EN (Bitfield-Mask: 0x01)                  */
-#define PWMx_R8_PWM_OUT_EN_RB_PWM8_OUT_EN_Pos (4UL)                 /*!< RB_PWM8_OUT_EN (Bit 4)                                */
-#define PWMx_R8_PWM_OUT_EN_RB_PWM8_OUT_EN_Msk (0x10UL)              /*!< RB_PWM8_OUT_EN (Bitfield-Mask: 0x01)                  */
-#define PWMx_R8_PWM_OUT_EN_RB_PWM9_OUT_EN_Pos (5UL)                 /*!< RB_PWM9_OUT_EN (Bit 5)                                */
-#define PWMx_R8_PWM_OUT_EN_RB_PWM9_OUT_EN_Msk (0x20UL)              /*!< RB_PWM9_OUT_EN (Bitfield-Mask: 0x01)                  */
-#define PWMx_R8_PWM_OUT_EN_RB_PWM10_OUT_EN_Pos (6UL)                /*!< RB_PWM10_OUT_EN (Bit 6)                               */
-#define PWMx_R8_PWM_OUT_EN_RB_PWM10_OUT_EN_Msk (0x40UL)             /*!< RB_PWM10_OUT_EN (Bitfield-Mask: 0x01)                 */
-#define PWMx_R8_PWM_OUT_EN_RB_PWM11_OUT_EN_Pos (7UL)                /*!< RB_PWM11_OUT_EN (Bit 7)                               */
-#define PWMx_R8_PWM_OUT_EN_RB_PWM11_OUT_EN_Msk (0x80UL)             /*!< RB_PWM11_OUT_EN (Bitfield-Mask: 0x01)                 */
-/* =====================================================  R8_PWM_POLAR  ====================================================== */
-#define PWMx_R8_PWM_POLAR_RB_PWM4_POLAR_Pos (0UL)                   /*!< RB_PWM4_POLAR (Bit 0)                                 */
-#define PWMx_R8_PWM_POLAR_RB_PWM4_POLAR_Msk (0x1UL)                 /*!< RB_PWM4_POLAR (Bitfield-Mask: 0x01)                   */
-#define PWMx_R8_PWM_POLAR_RB_PWM5_POLAR_Pos (1UL)                   /*!< RB_PWM5_POLAR (Bit 1)                                 */
-#define PWMx_R8_PWM_POLAR_RB_PWM5_POLAR_Msk (0x2UL)                 /*!< RB_PWM5_POLAR (Bitfield-Mask: 0x01)                   */
-#define PWMx_R8_PWM_POLAR_RB_PWM6_POLAR_Pos (2UL)                   /*!< RB_PWM6_POLAR (Bit 2)                                 */
-#define PWMx_R8_PWM_POLAR_RB_PWM6_POLAR_Msk (0x4UL)                 /*!< RB_PWM6_POLAR (Bitfield-Mask: 0x01)                   */
-#define PWMx_R8_PWM_POLAR_RB_PWM7_POLAR_Pos (3UL)                   /*!< RB_PWM7_POLAR (Bit 3)                                 */
-#define PWMx_R8_PWM_POLAR_RB_PWM7_POLAR_Msk (0x8UL)                 /*!< RB_PWM7_POLAR (Bitfield-Mask: 0x01)                   */
-#define PWMx_R8_PWM_POLAR_RB_PWM8_POLAR_Pos (4UL)                   /*!< RB_PWM8_POLAR (Bit 4)                                 */
-#define PWMx_R8_PWM_POLAR_RB_PWM8_POLAR_Msk (0x10UL)                /*!< RB_PWM8_POLAR (Bitfield-Mask: 0x01)                   */
-#define PWMx_R8_PWM_POLAR_RB_PWM9_POLAR_Pos (5UL)                   /*!< RB_PWM9_POLAR (Bit 5)                                 */
-#define PWMx_R8_PWM_POLAR_RB_PWM9_POLAR_Msk (0x20UL)                /*!< RB_PWM9_POLAR (Bitfield-Mask: 0x01)                   */
-#define PWMx_R8_PWM_POLAR_RB_PWM10_POLAR_Pos (6UL)                  /*!< RB_PWM10_POLAR (Bit 6)                                */
-#define PWMx_R8_PWM_POLAR_RB_PWM10_POLAR_Msk (0x40UL)               /*!< RB_PWM10_POLAR (Bitfield-Mask: 0x01)                  */
-#define PWMx_R8_PWM_POLAR_RB_PWM11_POLAR_Pos (7UL)                  /*!< RB_PWM11_POLAR (Bit 7)                                */
-#define PWMx_R8_PWM_POLAR_RB_PWM11_POLAR_Msk (0x80UL)               /*!< RB_PWM11_POLAR (Bitfield-Mask: 0x01)                  */
-/* =====================================================  R8_PWM_CONFIG  ===================================================== */
-#define PWMx_R8_PWM_CONFIG_RB_PWM_CYCLE_SEL_Pos (0UL)               /*!< RB_PWM_CYCLE_SEL (Bit 0)                              */
-#define PWMx_R8_PWM_CONFIG_RB_PWM_CYCLE_SEL_Msk (0x1UL)             /*!< RB_PWM_CYCLE_SEL (Bitfield-Mask: 0x01)                */
-#define PWMx_R8_PWM_CONFIG_RB_PWM_STAG_ST_Pos (1UL)                 /*!< RB_PWM_STAG_ST (Bit 1)                                */
-#define PWMx_R8_PWM_CONFIG_RB_PWM_STAG_ST_Msk (0x2UL)               /*!< RB_PWM_STAG_ST (Bitfield-Mask: 0x01)                  */
-#define PWMx_R8_PWM_CONFIG_RB_PWM_CYC_MOD_Pos (2UL)                 /*!< RB_PWM_CYC_MOD (Bit 2)                                */
-#define PWMx_R8_PWM_CONFIG_RB_PWM_CYC_MOD_Msk (0xcUL)               /*!< RB_PWM_CYC_MOD (Bitfield-Mask: 0x03)                  */
-#define PWMx_R8_PWM_CONFIG_RB_PWM4_5_STAG_EN_Pos (4UL)              /*!< RB_PWM4_5_STAG_EN (Bit 4)                             */
-#define PWMx_R8_PWM_CONFIG_RB_PWM4_5_STAG_EN_Msk (0x10UL)           /*!< RB_PWM4_5_STAG_EN (Bitfield-Mask: 0x01)               */
-#define PWMx_R8_PWM_CONFIG_RB_PWM6_7_STAG_EN_Pos (5UL)              /*!< RB_PWM6_7_STAG_EN (Bit 5)                             */
-#define PWMx_R8_PWM_CONFIG_RB_PWM6_7_STAG_EN_Msk (0x20UL)           /*!< RB_PWM6_7_STAG_EN (Bitfield-Mask: 0x01)               */
-#define PWMx_R8_PWM_CONFIG_RB_PWM8_9_STAG_EN_Pos (6UL)              /*!< RB_PWM8_9_STAG_EN (Bit 6)                             */
-#define PWMx_R8_PWM_CONFIG_RB_PWM8_9_STAG_EN_Msk (0x40UL)           /*!< RB_PWM8_9_STAG_EN (Bitfield-Mask: 0x01)               */
-#define PWMx_R8_PWM_CONFIG_RB_PWM10_11_STAG_EN_Pos (7UL)            /*!< RB_PWM10_11_STAG_EN (Bit 7)                           */
-#define PWMx_R8_PWM_CONFIG_RB_PWM10_11_STAG_EN_Msk (0x80UL)         /*!< RB_PWM10_11_STAG_EN (Bitfield-Mask: 0x01)             */
-/* ===================================================  R8_PWM_CLOCK_DIV  ==================================================== */
-/* =====================================================  R8_PWM4_DATA  ====================================================== */
-/* =====================================================  R8_PWM5_DATA  ====================================================== */
-/* =====================================================  R8_PWM6_DATA  ====================================================== */
-/* =====================================================  R8_PWM7_DATA  ====================================================== */
-/* =====================================================  R8_PWM8_DATA  ====================================================== */
-/* =====================================================  R8_PWM9_DATA  ====================================================== */
-/* =====================================================  R8_PWM10_DATA  ===================================================== */
-/* =====================================================  R8_PWM11_DATA  ===================================================== */
+/* ======================================================  PWM_OUT_EN  ======================================================= */
+#define PWM_OUT_EN_PWM4_OUT_EN_Pos (0UL)                            /*!< PWM4_OUT_EN (Bit 0)                                   */
+#define PWM_OUT_EN_PWM4_OUT_EN_Msk (0x1UL)                          /*!< PWM4_OUT_EN (Bitfield-Mask: 0x01)                     */
+#define PWM_OUT_EN_PWM5_OUT_EN_Pos (1UL)                            /*!< PWM5_OUT_EN (Bit 1)                                   */
+#define PWM_OUT_EN_PWM5_OUT_EN_Msk (0x2UL)                          /*!< PWM5_OUT_EN (Bitfield-Mask: 0x01)                     */
+#define PWM_OUT_EN_PWM6_OUT_EN_Pos (2UL)                            /*!< PWM6_OUT_EN (Bit 2)                                   */
+#define PWM_OUT_EN_PWM6_OUT_EN_Msk (0x4UL)                          /*!< PWM6_OUT_EN (Bitfield-Mask: 0x01)                     */
+#define PWM_OUT_EN_PWM7_OUT_EN_Pos (3UL)                            /*!< PWM7_OUT_EN (Bit 3)                                   */
+#define PWM_OUT_EN_PWM7_OUT_EN_Msk (0x8UL)                          /*!< PWM7_OUT_EN (Bitfield-Mask: 0x01)                     */
+#define PWM_OUT_EN_PWM8_OUT_EN_Pos (4UL)                            /*!< PWM8_OUT_EN (Bit 4)                                   */
+#define PWM_OUT_EN_PWM8_OUT_EN_Msk (0x10UL)                         /*!< PWM8_OUT_EN (Bitfield-Mask: 0x01)                     */
+#define PWM_OUT_EN_PWM9_OUT_EN_Pos (5UL)                            /*!< PWM9_OUT_EN (Bit 5)                                   */
+#define PWM_OUT_EN_PWM9_OUT_EN_Msk (0x20UL)                         /*!< PWM9_OUT_EN (Bitfield-Mask: 0x01)                     */
+#define PWM_OUT_EN_PWM10_OUT_EN_Pos (6UL)                           /*!< PWM10_OUT_EN (Bit 6)                                  */
+#define PWM_OUT_EN_PWM10_OUT_EN_Msk (0x40UL)                        /*!< PWM10_OUT_EN (Bitfield-Mask: 0x01)                    */
+#define PWM_OUT_EN_PWM11_OUT_EN_Pos (7UL)                           /*!< PWM11_OUT_EN (Bit 7)                                  */
+#define PWM_OUT_EN_PWM11_OUT_EN_Msk (0x80UL)                        /*!< PWM11_OUT_EN (Bitfield-Mask: 0x01)                    */
+/* ======================================================  PWM_POLAR  ======================================================== */
+#define PWM_POLAR_PWM4_POLAR_Pos (0UL)                              /*!< PWM4_POLAR (Bit 0)                                    */
+#define PWM_POLAR_PWM4_POLAR_Msk (0x1UL)                            /*!< PWM4_POLAR (Bitfield-Mask: 0x01)                      */
+#define PWM_POLAR_PWM5_POLAR_Pos (1UL)                              /*!< PWM5_POLAR (Bit 1)                                    */
+#define PWM_POLAR_PWM5_POLAR_Msk (0x2UL)                            /*!< PWM5_POLAR (Bitfield-Mask: 0x01)                      */
+#define PWM_POLAR_PWM6_POLAR_Pos (2UL)                              /*!< PWM6_POLAR (Bit 2)                                    */
+#define PWM_POLAR_PWM6_POLAR_Msk (0x4UL)                            /*!< PWM6_POLAR (Bitfield-Mask: 0x01)                      */
+#define PWM_POLAR_PWM7_POLAR_Pos (3UL)                              /*!< PWM7_POLAR (Bit 3)                                    */
+#define PWM_POLAR_PWM7_POLAR_Msk (0x8UL)                            /*!< PWM7_POLAR (Bitfield-Mask: 0x01)                      */
+#define PWM_POLAR_PWM8_POLAR_Pos (4UL)                              /*!< PWM8_POLAR (Bit 4)                                    */
+#define PWM_POLAR_PWM8_POLAR_Msk (0x10UL)                           /*!< PWM8_POLAR (Bitfield-Mask: 0x01)                      */
+#define PWM_POLAR_PWM9_POLAR_Pos (5UL)                              /*!< PWM9_POLAR (Bit 5)                                    */
+#define PWM_POLAR_PWM9_POLAR_Msk (0x20UL)                           /*!< PWM9_POLAR (Bitfield-Mask: 0x01)                      */
+#define PWM_POLAR_PWM10_POLAR_Pos (6UL)                             /*!< PWM10_POLAR (Bit 6)                                   */
+#define PWM_POLAR_PWM10_POLAR_Msk (0x40UL)                          /*!< PWM10_POLAR (Bitfield-Mask: 0x01)                     */
+#define PWM_POLAR_PWM11_POLAR_Pos (7UL)                             /*!< PWM11_POLAR (Bit 7)                                   */
+#define PWM_POLAR_PWM11_POLAR_Msk (0x80UL)                          /*!< PWM11_POLAR (Bitfield-Mask: 0x01)                     */
+/* ======================================================  PWM_CONFIG  ======================================================= */
+#define PWM_CONFIG_PWM_CYCLE_SEL_Pos (0UL)                          /*!< PWM_CYCLE_SEL (Bit 0)                                 */
+#define PWM_CONFIG_PWM_CYCLE_SEL_Msk (0x1UL)                        /*!< PWM_CYCLE_SEL (Bitfield-Mask: 0x01)                   */
+#define PWM_CONFIG_PWM_STAG_ST_Pos (1UL)                            /*!< PWM_STAG_ST (Bit 1)                                   */
+#define PWM_CONFIG_PWM_STAG_ST_Msk (0x2UL)                          /*!< PWM_STAG_ST (Bitfield-Mask: 0x01)                     */
+#define PWM_CONFIG_PWM_CYC_MOD_Pos (2UL)                            /*!< PWM_CYC_MOD (Bit 2)                                   */
+#define PWM_CONFIG_PWM_CYC_MOD_Msk (0xcUL)                          /*!< PWM_CYC_MOD (Bitfield-Mask: 0x03)                     */
+#define PWM_CONFIG_PWM4_5_STAG_EN_Pos (4UL)                         /*!< PWM4_5_STAG_EN (Bit 4)                                */
+#define PWM_CONFIG_PWM4_5_STAG_EN_Msk (0x10UL)                      /*!< PWM4_5_STAG_EN (Bitfield-Mask: 0x01)                  */
+#define PWM_CONFIG_PWM6_7_STAG_EN_Pos (5UL)                         /*!< PWM6_7_STAG_EN (Bit 5)                                */
+#define PWM_CONFIG_PWM6_7_STAG_EN_Msk (0x20UL)                      /*!< PWM6_7_STAG_EN (Bitfield-Mask: 0x01)                  */
+#define PWM_CONFIG_PWM8_9_STAG_EN_Pos (6UL)                         /*!< PWM8_9_STAG_EN (Bit 6)                                */
+#define PWM_CONFIG_PWM8_9_STAG_EN_Msk (0x40UL)                      /*!< PWM8_9_STAG_EN (Bitfield-Mask: 0x01)                  */
+#define PWM_CONFIG_PWM10_11_STAG_EN_Pos (7UL)                       /*!< PWM10_11_STAG_EN (Bit 7)                              */
+#define PWM_CONFIG_PWM10_11_STAG_EN_Msk (0x80UL)                    /*!< PWM10_11_STAG_EN (Bitfield-Mask: 0x01)                */
+/* =====================================================  PWM_CLOCK_DIV  ===================================================== */
+/* =======================================================  PWM_DATA  ======================================================== */
 
 
 /* =========================================================================================================================== */
